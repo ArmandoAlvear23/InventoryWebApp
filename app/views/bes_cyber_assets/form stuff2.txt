@@ -1,0 +1,9 @@
+<div class="field">
+    <%= form.label :impact_rating %>
+    <%= form.text_field :impact_rating, id: :bes_cyber_asset_impact_rating %>
+  </div> 
+ 
+
+
+
+  <%= form.select(:asset_id, @bes_assets.all.collect { |p| [ p.asset_id, p.asset_id ] }, {:include_blank => true}, {:class => 'form-control'}) %>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Psp Diagrams To Ps Perimeters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Psp dia file name</th>
+      <th>Psp dia psp</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @psp_diagrams_to_ps_perimeters.each do |psp_diagrams_to_ps_perimeter| %>
+      <tr>
+        <td><%= psp_diagrams_to_ps_perimeter.psp_dia_file_name %></td>
+        <td><%= psp_diagrams_to_ps_perimeter.psp_dia_psp_id %></td>
+        <td><%= link_to 'Show', psp_diagrams_to_ps_perimeter %></td>
+        <td><%= link_to 'Edit', edit_psp_diagrams_to_ps_perimeter_path(psp_diagrams_to_ps_perimeter) %></td>
+        <td><%= link_to 'Destroy', psp_diagrams_to_ps_perimeter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Psp Diagrams To Ps Perimeter', new_psp_diagrams_to_ps_perimeter_path %>

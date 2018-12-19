@@ -1,0 +1,68 @@
+  <body>
+    <div class="container">
+      <%= form_with(model: psp_diagrams_to_ps_perimeter, local: true) do |form| %>
+      <% if psp_diagrams_to_ps_perimeter.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(psp_diagrams_to_ps_perimeter.errors.count, "error") %> prohibited this psp_diagrams_to_ps_perimeter from being saved:</h2>
+        <ul>
+          <% psp_diagrams_to_ps_perimeter.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+
+      <div class="form-row">
+
+        <div class="col">
+  <div class="field">
+    File Name:
+    <%= form.text_field :psp_dia_file_name, id: :psp_diagrams_to_ps_perimeter_psp_dia_file_name, class: "form-control" %>
+  </div>
+</div>
+
+<div class="col">
+
+  <div class="field">
+    PSP ID:
+        <%= form.select(:psp_dia_psp_id, @ps_perimeters.all.collect { |p| [ p.psp_id, p.id ] }, {:include_blank => true, :required=>true}, {:class => 'form-control'}) %>
+  </div>
+
+</div>
+
+</div>
+
+<br>
+
+
+          <div class="form-row">
+
+          <div class="col form-control">
+            Attachment <strong>(PDF ONLY)</strong>:<br>
+            <%= form.file_field :ps_pproof, multiple: false %>
+
+            <p>
+              <% if @psp_diagrams_to_ps_perimeter.ps_pproof? %>
+              <%= image_tag(@psp_diagrams_to_ps_perimeter.ps_pproof_url, :class => "photoedit") %>
+              <br>
+              <%= form.check_box :remove_es_pproof %> Remove Attachment
+
+              <% end %>
+
+            </p>
+          </div>
+
+        </div>
+
+<br>
+
+  <div class="form-row text-center">
+        <div class="col">
+    <%= form.submit "Add File", class: "btn-taco-lg"%>
+  </div>
+</div>
+<% end %>
+
+
+</div>
+</body>

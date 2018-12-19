@@ -1,0 +1,99 @@
+
+  <div class="container">
+
+    <% if notice != nil %>
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+      <%= notice %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <% end %>
+
+<%= form_for_filterrific @a do |f| %>
+
+    <div class="filter-taco">
+
+      <div class="form-row align-items-center">
+
+        <div class="col">
+          Search:
+          <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+          <%= f.text_field(:search_query, class: 'filterrific-periodically-observed form-control') %>
+        </div>
+
+        <div class="col">
+          Asset Type:
+          <%= f.select(:with_asset_type,  [["Cotnrol Centers (CC)", "Control Center (CC)"], ["Transmission Substations and Switchyards (TF)", "Transmission Substation and Switchyard (TF)"],["Generation Resources (G)", "Generation Resource (G)"],["Additional Assets (AA)", "Additional Asset (AA)"],["Distribution Resources (DP)", "Distribution Resource (DP)"]], { include_blank: '- Any -'}, {:class=>"form-control"} ) %>
+        </div>
+
+        <div class="col">
+          Commissioned After:
+          <%= f.text_field(:with_comm_at, class: 'js-datepicker form-control', :id=>"datepicker", :type=>"date") %>
+        </div>
+
+        <div class="col">
+          Sorted By:
+          <%= f.select(:sorted_by, @a.select_options[:sorted_by], {}, {:class=>"form-control"}) %>
+        </div>
+
+      </div>
+
+      <br>
+
+      <div class="form-row align-items-center">
+          <div class="col-md-auto">Impact Rating:</div>
+          <div class="col-md-auto"><%= f.check_box(:with_high) %> High</div>
+          <div class="col-md-auto"><%= f.check_box(:with_medium) %> Medium</div>
+          <div class="col-md-auto"><%= f.check_box(:with_low) %> Low</div>
+          <div class="col" align="right">
+          <%= link_to('Export', bes_assets_path(:format => :csv), :class=>"btn-taco") %>
+          <%= link_to('Reset Filters', reset_filterrific_url, :class=>"btn-taco") %>
+        </div>
+        </div>
+    </div>
+    <% end %>
+
+  </div>
+
+    <%= render(partial: 'bes_assets/list', locals: { bes_assets: @bes_assets } ) %>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+$(window).scroll(function () {
+
+if ($(this).scrollTop() > 50) {
+
+$('#back-to-top').tooltip();
+
+$('#back-to-top').fadeIn();
+
+} else {
+
+$('#back-to-top').fadeOut();
+
+$('#back-to-top').tooltip('hide');
+
+}
+
+});
+
+// scroll body to 0px on click
+
+$('#back-to-top').click(function () {
+
+$('body,html').animate({
+
+scrollTop: 0
+
+}, 800);
+
+return false;
+
+});
+
+});
+
+</script>

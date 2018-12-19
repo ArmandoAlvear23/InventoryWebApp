@@ -1,0 +1,81 @@
+<nav class="navbar navbar-expand-lg p-2 px-md-4 mb-3 nav-taco sticky-top">
+    <a class="navbar-brand" href="/">
+      <img src="/assets/pub-logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+      Brownsville PUB <% if current_user.admin %><span class="font-weight-light" style="color: red;">Administrator   </span><% end %> </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="far fa-caret-square-down fa-lg"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+
+          <% if user_signed_in? and current_page?(controller: '/ps_perimeters') %>
+          <li><%= link_to 'Attach File', new_psp_diagrams_to_ps_perimeter_path, class: "nav-link" %></li>
+          <li><%= link_to 'New PSP', new_ps_perimeter_path, class: "nav-link" %></li>
+          <li class="nav-link">|</li>
+          <% end %>
+
+          <% if user_signed_in? and current_page?(controller: '/ea_points') %>
+          <%= link_to 'Attach File', new_access_list_to_ea_point_path, class: "nav-link" %>
+          <%= link_to 'New EAP', new_ea_point_path, class: "nav-link" %>
+          <li class="nav-link">|</li>
+          <% end %>
+
+          <% if user_signed_in? and current_page?(controller: '/es_perimeters') %>
+          <%= link_to 'Attach File', new_network_top_to_es_perimeter_path, class: "nav-link" %>
+          <%= link_to 'New ESP', new_es_perimeter_path, class: "nav-link" %>
+          <li class="nav-link">|</li>
+          <% end %>
+
+          <% if user_signed_in? and current_page?(controller: '/bes_cyber_assets') %>
+          <%= link_to 'New Cyber Asset', new_bes_cyber_asset_path, class: "nav-link" %>
+          <li class="nav-link">|</li>
+          <% end %>
+
+          <% if user_signed_in? and current_page?(controller: '/bes_cyber_systems') %>
+          <%= link_to 'New Cyber System', new_bes_cyber_system_path, class: "nav-link" %>
+          <li class="nav-link">|</li>
+          <% end %>
+
+          <% if user_signed_in? and current_page?(controller: '/bes_assets') %>
+          <%= link_to 'New BES Asset', new_bes_asset_path, class: "nav-link" %>
+          <li class="nav-link">|</li>
+          <% end %>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              CIP-002
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to 'New BES Asset', new_bes_asset_path, class: "dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= link_to 'New Cyber System', new_bes_cyber_system_path, class: "dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= link_to 'New Cyber Asset', new_bes_cyber_asset_path, class: "dropdown-item" %>          
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              CIP-005-5 & 006-6
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to 'New ESP', new_es_perimeter_path, class: "dropdown-item" %>
+              <%= link_to '- Add File', new_network_top_to_es_perimeter_path, class: "dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= link_to 'New EAP', new_ea_point_path, class: "dropdown-item" %>
+              <%= link_to '- Add File', new_access_list_to_ea_point_path, class: "dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= link_to 'New PSP', new_ps_perimeter_path, class: "dropdown-item" %>
+              <%= link_to '- Add File', new_psp_diagrams_to_ps_perimeter_path, class: "dropdown-item" %>        
+            </div>
+          </li>
+
+        </ul>
+        <span>Hi, <%= current_user.first_name %> <%= current_user.last_name %></span>
+        </ul>
+
+    </div>
+  </nav>
+
+  <%= render "layouts/nav_left" %>
+

@@ -1,0 +1,254 @@
+<body>
+  <div class="container">
+
+    <% if notice != nil %>
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+      <%= notice %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <% end %>
+
+    <p>
+      <strong><i>Cyber Asset:</i></strong>
+      <h1 class="display-4">
+        <%= @bes_cyber_asset.ca_id %>
+      </h1>
+    </p>
+
+    <p>
+      <% if @bes_cyber_asset.proof? %>
+
+      <%= image_tag(@bes_cyber_asset.proof_url, :class => "photoedit") %>
+
+      <% else %>
+
+      <i> No image has been added to BES Cyber Asset. </i>
+
+      <% end %>
+      
+    </p>
+
+    <p><strong><i>Created at:</i></strong> <%= @bes_cyber_asset.created_at.strftime("%m-%d-%Y, %r") %> &nbsp <strong><i>Updated at:</i></strong> <%= @bes_cyber_asset.updated_at.strftime("%m-%d-%Y, %r") %></p>
+
+    <div class="form-group">
+
+      <div class="form-row">
+
+        <div class="col form-control">
+      <p>
+        <strong>Classification:</strong>
+        <%= @bes_cyber_asset.ca_classification %>
+      </p>
+
+      <p>
+       <strong>BES Cyber Systems ID:</strong>
+       <%= @bes_cyber_asset.bcs_id %>
+     </p>
+
+     <p>
+      <strong>Impact rating:</strong>
+      <%= @bes_cyber_asset.impact_rating %>
+    </p>
+
+    <p>
+      <strong>Asset ID:</strong>
+      <%= @bes_cyber_asset.asset_id %>
+    </p>
+
+  </div>
+
+  <br>
+  <div class="col-md-auto"></div>
+  <br>
+
+  <div class="col form-control">
+
+    <p>
+      <strong>Connected to a Network via a Routable Protocol?:</strong>
+      <%= @bes_cyber_asset.protocol %>
+    </p>
+
+    <p>
+      <strong>Ip Address:</strong>
+      <%= @bes_cyber_asset.ip_address %>
+    </p>
+
+    <p>
+      <strong>ESP Identifier:</strong>
+      <%= @bes_cyber_asset.esp_identifier %>
+    </p>
+
+    <p>
+      <strong>Accessible via Dial-up Connectivity?</strong>
+      <%= @bes_cyber_asset.ca_dial_up %>
+    </p>
+
+    <p>
+      <strong>Cip 005-5 R1.4:</strong>
+      <%= @bes_cyber_asset.cip_005 %>
+    </p>
+
+    <p>
+      <strong>Is IRA Enabled:</strong>
+      <%= @bes_cyber_asset.ca_ira %>
+    </p>
+
+    <p>
+      <strong>PSP Identifier:</strong>
+      <%= @bes_cyber_asset.ca_psp %>
+    </p>
+
+  </div>
+
+</div>
+
+<br>
+
+<div class="form-row">
+
+  <div class="col form-control">
+    <div class="form-row">
+
+  <div class="col">
+    <p>
+      <strong>Logging performed:</strong>
+      <%= @bes_cyber_asset.ca_bcs_login %>
+    </p>
+  </div>
+
+  <div class="col">
+    <p>
+      <strong>BCS Logging:</strong>
+      <%= @bes_cyber_asset.bcs_login %>
+    </p>
+  </div>
+
+  <div class="col">
+    <p>
+      <strong>Log collector:</strong>
+      <%= @bes_cyber_asset.log_collector %>
+    </p>
+  </div>
+
+</div>
+</div>
+
+</div>
+
+<br>
+
+<div class="form-row">
+
+  <div class="col form-control">
+    <div class="form-row">
+
+  <div class="col">
+    <p>
+      <strong>Activation Date:</strong>
+      <%= @bes_cyber_asset.activation_date %>
+    </p>
+  </div>
+
+  <br>
+
+  <div class="col">
+    <p>
+      <strong>De-Activation Date:</strong>
+      <%= @bes_cyber_asset.deactivation_date %>
+    </p>
+  </div>
+
+</div>
+</div>
+
+</div>
+
+<br>
+
+<div class="form-row">
+
+  <div class="col form-control">
+
+    <p>
+      <strong>Cyber Asset Function:</strong>
+      <%= @bes_cyber_asset.ca_function %>
+    </p>
+
+    <p>
+      <strong>Other:</strong>
+      <%= @bes_cyber_asset.ca_other %>
+    </p>
+
+    <p>
+      <strong>Cyber Asset Vendor:</strong>
+      <%= @bes_cyber_asset.ca_vendor %>
+    </p>
+
+    <p>
+      <strong>Cyber Asset Model:</strong>
+      <%= @bes_cyber_asset.ca_model %>
+    </p>
+
+    <p>
+      <strong>Operating System:</strong>
+      <%= @bes_cyber_asset.os_firmware %>
+    </p>
+
+    <p>
+      <strong>Other:</strong>
+      <%= @bes_cyber_asset.os_other %>
+    </p>
+
+  </div>
+
+  <br>
+  <div class="col-md-auto"></div>
+  <br>
+
+  <div class="col form-control">
+
+    <p>
+      <strong>External Routable Connectivity:</strong>
+      <%= @bes_cyber_asset.external_conn %>
+    </p>
+
+    <p>
+      <strong>System Logging:</strong>
+      <%= @bes_cyber_asset.system_logging %>
+    </p>
+
+    <p>
+      <strong>Alerting capable:</strong>
+      <%= @bes_cyber_asset.alerting %>
+    </p>
+
+    <p>
+      <strong>Responsible Registered Entity and NCR:</strong>
+      <%= @bes_cyber_asset.reg_entity_ncr %>
+    </p>
+
+    <p>
+      <strong>Region:</strong>
+      <%= @bes_cyber_asset.region %>
+    </p>
+
+    <p>
+      <strong>Function:</strong>
+      <%= @bes_cyber_asset.function %>
+    </p>
+  </div>
+</div>
+
+<br>
+
+    <div class="text-center">
+      <%= link_to 'Edit Asset', edit_bes_cyber_asset_path(@bes_cyber_asset), class: "btn-taco-lg" %>
+      <%= link_to 'Back to Assets', bes_cyber_assets_path, class: "btn-taco-lg" %>
+    </div>
+
+  </div>
+</div>
+<br>
+</body>

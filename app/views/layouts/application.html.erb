@@ -1,0 +1,153 @@
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+	<link rel="manifest" href="/assets/site.webmanifest">
+	<meta name="msapplication-TileColor" content="#2b5797">
+	<meta name="theme-color" content="#ffffff">
+
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+	<!-- Custom styles for this template -->
+	<link href="https://getbootstrap.com/docs/4.1/examples/pricing/pricing.css" rel="stylesheet">
+	<link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,800" rel="stylesheet">
+</head>
+
+<title>CIP-002 - 5.1</title>
+
+<body>
+		<%= render "layouts/nav_home" %>  
+
+		<%= render "layouts/header_mid" %>
+		
+	<div class="container-fluid">  
+
+		<div class="col-md-10 ml-sm-auto col-lg-10 ">
+
+			<%= yield %>
+
+		</div>
+
+	</div>
+
+	<div class="col-md-10 ml-sm-auto col-lg-10 ">
+	<%= render "layouts/footer" %>
+</div>
+</body>
+
+<div>
+	<a id="back-to-top" href="#" class="btn btn-outline-secondary btn-lg back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left"><i class="fa fa-angle-up"></i></a>
+</div>
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+	<script src="https://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script>
+	<script src="https://getbootstrap.com/docs/4.1/dist/js/bootstrap.min.js"></script>
+	<script src="https://getbootstrap.com/docs/4.1/assets/js/vendor/holder.min.js"></script>
+	<script>
+		Holder.addTheme('thumb', {
+			bg: '#55595c',
+			fg: '#eceeef',
+			text: 'Thumbnail'
+		});
+	</script>
+
+	<!-- Back to Top Button -->
+	<script>
+		$(document).ready(function(){
+			$(window).scroll(function () {
+				if ($(this).scrollTop() > 50) {
+					$('#back-to-top').fadeIn();
+				} else {
+					$('#back-to-top').fadeOut();
+				}
+			});
+			// scroll body to 0px on click
+			$('#back-to-top').click(function () {
+				$('#back-to-top').tooltip('hide');
+				$('body,html').animate({
+					scrollTop: 0
+				}, 800);
+				return false;
+			});
+			
+			$('#back-to-top').tooltip('show');
+
+		});
+	</script>
+
+	<!-- Icons -->
+	<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+	<script>
+		feather.replace()
+	</script>
+
+	<!-- Nav Hide -->
+	<script>
+		var cip2 = localStorage.getItem('cip2');
+		var cip56 = localStorage.getItem('cip56');
+
+		if (cip2 == '1' && cip56 == '0')
+		{
+			$('#cip2').toggle(200);
+		}
+
+		else if (cip2 == '0' && cip56 == '1')
+		{
+			$('#cip56').toggle(200);
+		}
+
+		else if (cip56 == '1' && cip2 == '1')
+		{
+			$('#cip2').toggle(200);
+			$('#cip56').toggle(200);
+		}
+		else
+		{
+		localStorage.setItem('cip2', '0');
+		localStorage.setItem('cip56', '0');
+		}
+		
+		function cip002() 
+		{
+			if (localStorage.getItem('cip2') == '1')
+			{
+				localStorage.setItem('cip2', '0');
+			}
+			else
+			{
+				localStorage.setItem('cip2', '1');
+			}
+			$('#cip2').toggle(200);
+		}
+
+		function cip005006() 
+		{
+			if (localStorage.getItem('cip56') == '1')
+			{
+				localStorage.setItem('cip56', '0');
+			}
+			else
+			{
+				localStorage.setItem('cip56', '1');
+			}
+
+			$('#cip56').toggle(200);
+		}
+	</script>
+
+	<%= csrf_meta_tag %>
+	<%= javascript_include_tag :application %>
+	<%= stylesheet_link_tag "taco" %>
+
+</html>

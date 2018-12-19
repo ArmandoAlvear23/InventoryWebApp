@@ -1,0 +1,96 @@
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" href="/">
+                  <span data-feather="home"></span>
+                  <strong>Home</strong> <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <% if current_user.admin? %>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/user">
+                  <span data-feather="users"></span>
+                  <span style="color:red;">Manage Accounts</span>
+                </a>
+              </li>
+              <% end %>
+              <li class="nav-item">
+                <a class="nav-link" href="/edit">
+                  <span data-feather="edit"></span>
+                  Change Password
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/logout">
+                  <span data-feather="log-out"></span>
+                  Sign Out
+                </a>
+              </li>
+            </ul>
+
+            <div class="dropdown-divider"></div>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>CIP 002</span>
+              <a class="d-flex align-items-center text-muted">
+                <span data-feather="plus-circle" onclick="cip002()"></span>
+              </a>
+            </h6>
+            <ul id="cip2" class="nav flex-column mb-2">
+              <li class="nav-item">
+                <a class="nav-link" href="/bes_assets">
+                  <span data-feather="file-text"></span>
+                  View BES Assets
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/bes_cyber_systems">
+                  <span data-feather="file-text"></span>
+                  View Cyber Systems
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/bes_cyber_assets">
+                  <span data-feather="file-text"></span>
+                  View Cyber Assets
+                </a>
+              </li>
+            </ul>
+
+
+            <div class="dropdown-divider"></div>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>CIP 005-5 & 006-6</span>
+              <a class="d-flex align-items-center text-muted">
+                <span data-feather="plus-circle" onclick="cip005006()"></span>
+              </a>
+            </h6>
+            <ul id="cip56" class="nav flex-column mb-2">
+              <li class="nav-item">
+                <a class="nav-link" href="/es_perimeters">
+                  <span data-feather="file-text"></span>
+                  View ESP
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/ea_points">
+                  <span data-feather="file-text"></span>
+                  View EAP
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/ps_perimeters">
+                  <span data-feather="file-text"></span>
+                  View PSP
+                </a>
+              </li>
+            </ul>
+
+            <div class="dropdown-divider"></div>
+
+          </div>
+        </nav>
+      </div>

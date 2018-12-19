@@ -1,0 +1,342 @@
+<body>
+  <div class="container">
+    <%= form_with(model: bes_cyber_system, local: true) do |form| %>
+    <% if bes_cyber_system.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bes_cyber_system.errors.count, "error") %> prohibited this bes_cyber_system from being saved:</h2>
+
+      <ul>
+        <% bes_cyber_system.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+
+
+<div class="form-group">
+              <div class="form-row">
+                <div class="col">
+                 Cyber System ID
+                  <%= form.text_field :BES_cyber_system, id: :bes_cyber_system_BES_cyber_system, required: 'true', class: "form-control" %>
+                </div>
+                <div class="col">
+                  Asset (location)
+                  <%= form.select(:BES_asset_BCS, @bes_assets.all.collect { |p| [ p.asset_id, p.asset_id ] }, {:include_blank => true}, {:class => 'form-control'}) %>
+                </div>
+              </div>
+
+                <br>
+
+                  <div class="field form-control">
+                    <p>
+                      <strong>6.3.1 Dynamic Response</strong>
+                      <br>
+                      The Dynamic Response Operating Service includes those actions performed by BES elements or substations which are automatically triggered to initiate a response to a BES condition. These actions are triggered by a single element or control device or a combination of these elements or devices in concert to perform an action or cause a condition in reaction to the triggering action or condition. The types of dynamic responses that may be considered as potentially having an impact on the BES are:
+                      <ul>
+                        <li>Spinning reserves (contingency reserves)</li>
+                        <ul>
+                          <li>Providing actual reserve generation when called upon (GO, GOP)</li>
+                          <li>Monitoring that reserves are sufficient (BA)</li>
+                        </ul>
+
+                        <li>Governor response</li>
+                        <ul> 
+                          <li>Control system used to actuate governor response (GO, GOP)</li>
+                        </ul>
+
+                        <li>Protections systems (transmission and generation)</li>
+                        <ul>
+                          <li>Lines, buses, transformers, generators (DP,TO,TOP,GO,GOP)</li>
+                          <li>Zone protection for breaker failure (DP, TO, TOP)</li>
+                          <li>Breaker protection (DP, TO, TOP)</li>
+                          <li>Current, frequency, speed, phase (TO,TOP, GO, GOP)</li>
+                        </ul>
+
+                        <li>Special protection systems or remedial action schemes</li>
+                        <ul>
+                          <li>Sensors, relays, and breakers, possible software (DP, TO, TOP)</li>
+                        </ul>
+
+                        <li>Under and over frequency relay protection (includes automatic load shedding)</li>
+                        <ul>
+                          <li>Sensors, relays, and breakers (DP)</li>
+                        </ul>
+
+                        <li>Under and over voltage relay protection (includes automatic load shedding)</li>
+                        <ul>
+                          <li>Sensors, relays, and breakers (DP)</li>
+                        </ul>
+
+                        <li>Power system stabilizers (GO, GOP)</li>
+                      </ul>
+
+                    </p>
+
+                    <%= form.radio_button :q1, "Yes" %> Yes
+                    <%= form.radio_button :q1, "No" %> No
+
+                  </div>
+
+                  <br>
+
+                  <div class="field form-control">
+                    <p>
+                      <strong>6.3.2 Balancing Load and Generation</strong>
+                      <br>
+                      The balancing load and generation operations service includes activities, actions and conditions necessary for monitoring and controlling generation and load in the operations planning horizon and in real-time. Aspects of balancing load and generation functions include, but are not limited to:
+                      <br>
+                      <ul>
+                        <li>Calculation of area control error (ACE)</li>
+                        <ul>
+                          <li>Field data sources (tie flows, frequency, time error, etc.) (TO, TOP)</li>
+                          <li>Software used to perform calculation (BA)</li>
+                        </ul>
+
+                        <li>Demand response</li>
+                        <ul>
+                          <li>Ability to identify load changes needed (BA)</li>
+                          <li>Ability to implement load changes (TOP, DP)</li>
+                        </ul>
+
+                        <li>Manually initiated load shedding</li>
+                        <ul>
+                          <li>Ability to identify load changes needed (BA)</li>
+                          <li>Ability to implement load changes (TOP, DP)</li>
+                        </ul>
+
+                        <li>Non-spinning reserve (contingency reserve)</li>
+                        <ul>
+                          <li>Know generation status, capability, ramp rate, start time (GO, BA)</li>
+                          <li>Start units and provide energy (GOP)</li>
+                        </ul>
+                      </ul>
+
+                    </p>
+
+                    <%= form.radio_button :q2, "Yes" %> Yes
+                    <%= form.radio_button :q2, "No" %> No
+
+                  </div>
+
+                  <br>
+
+                  <div class="field form-control">
+                    <p>
+                      <strong>6.3.3 Controlling Frequency (Real Power)</strong>
+                      <br>
+                      The controlling frequency operations service includes activities, actions and conditions which ensure, in real time, that frequency remains within bounds acceptable for the reliability or operability of the BES. Aspects of the controlling frequency function include, but are limited to:
+                      <br>
+
+                      <ul>
+                        <li>Generation control (such as AGC)</li>
+                        <ul>
+                          <li>ACE, current generator output, ramp rate, unit characteristics (BA, GO, GOP)</li>
+                          <li>Software to calculate unit adjustments (BA)</li>
+                          <li>Transmit adjustments to individual units (GOP)</li>
+                          <li>Unit controls implementing adjustments (GOP)</li>
+                        </ul>
+
+                        <li>Regulation (regulating reserves)</li>
+                        <ul>
+                          <li>Frequency source, schedule (BA)</li>
+                          <li>Governor control system (GO, GOP)</li>
+                        </ul>
+                      </ul>
+
+                    </p>
+
+                    <%= form.radio_button :q3, "Yes" %> Yes
+                    <%= form.radio_button :q3, "No" %> No
+
+                  </div>
+
+                  <br>
+
+                  <div class="field form-control">
+                    <p>
+                      <strong>6.3.4 Controlling Voltage (Reactive Power)</strong>
+                      <br>
+                      The controlling voltage operations service includes activities, actions and conditions which ensure, in real time, that voltage remains within bounds acceptable for the reliability or operability of the BES. Aspects of the controlling voltage function include, but are not limited to:
+                      <br>
+
+                      <ul>
+                        <li>Automatic voltage regulation (AVR)</li>
+                        <ul>
+                          <li>Sensors, stator control system, feedback (GO, GOP)</li>
+                        </ul>
+
+                        <li>Capacitive resources</li>
+                        <ul>
+                          <li>Status, control (manual or auto), feedback (TOP, TO, DP)</li>
+                        </ul>
+
+                        <li>Inductive resources (transformer tap changer, or inductors)</li>
+                        <ul>
+                          <li>Status, control (manual or auto), feedback (TOP, TO, DP)</li>
+                        </ul>
+
+                        <li>Static VAR compensators (SVC)</li>
+                        <ul>
+                          <li>Status, computations, control (manual or auto), feedback (TOP, TO, DP)</li>
+                        </ul>
+                      </ul>
+                    </p>
+
+                    <%= form.radio_button :q4, "Yes" %> Yes
+                    <%= form.radio_button :q4, "No" %> No
+
+                  </div>
+
+                  <br>
+
+                  <div class="field form-control">
+                    <p>
+                      <strong>6.3.5 Managing Constraints</strong>
+                      <br>
+                      Managing constraints includes activities, actions and conditions that are necessary to ensure that elements of the BES operate within design limits and constraints established for the reliability and operability of the BES. Aspects of the managing constraints include, but are not limited to:
+                      <br>
+
+                      <ul>
+                        <li>Available transfer capability “ATC” (TOP)</li>
+                        <li>Interchange schedules (TOP, RC)</li>
+                        <li>Generation re-dispatch and unit commit (GOP)</li>
+                        <li>Identify and monitor SOL’s & IROL’s (TOP, RC)</li>
+                        <li>Identify and monitor flow gates (TOP, RC)</li>
+                      </ul>
+
+                    </p>
+
+                    <%= form.radio_button :q5, "Yes" %> Yes
+                    <%= form.radio_button :q5, "No" %> No
+
+                  </div>
+
+                  <br>
+
+                  <div class="field form-control">
+                    <p>
+                      <strong>6.3.6 Monitoring and Control</strong>
+                      <br>
+                      Monitoring and control includes those activities, actions and conditions that provide monitoring and control of BES elements. An example aspect of the control and operation function is:
+                      <br>
+
+                      <ul>
+                        <li>All methods of operating breakers and switches</li>
+                        <ul>
+                          <li>SCADA (TOP, GOP)</li>
+                          <li>Substation automation (TOP)</li>
+                        </ul>
+                      </ul>
+
+                    </p>
+
+                    <%= form.radio_button :q6, "Yes" %> Yes
+                    <%= form.radio_button :q6, "No" %> No
+
+                  </div>
+
+                  <br>
+
+                  <div class="field form-control">
+                    <p>
+                      <strong>6.3.7 Restoration of the BES</strong>
+                      <br>
+                      The restoration of the BES operations service includes activities, actions and conditions necessary to go from a shutdown condition to an operating condition delivering electric power without external assistance. Aspects of the restoration of the BES function include, but are not limited to:
+                      <br>
+
+                      <ul>
+                        <li>Restoration including planned cranking path</li>
+                        <ul>
+                          <li>Through black start units (TOP, GOP)</li>
+                          <li>Through tie lines (TOP, GOP)</li>
+                        </ul>
+
+                        <li>Off-site power for nuclear facilities (TOP, TO, BA, RC, DP, GO, GOP)</li>
+                        <li>Coordination (TOP, TO, BA, RC, DP, GO, GOP)</li>
+                      </ul>
+
+                    </p>
+
+                    <%= form.radio_button :q7, "Yes" %> Yes
+                    <%= form.radio_button :q7, "No" %> No
+
+                  </div>
+
+                  <br>
+
+                  <div class="field form-control">
+                    <p>
+                      <strong>6.3.8 Situational Awareness</strong>
+                      <br>
+                      The situational awareness function includes activities, actions and conditions established by policy, directive or standard operating procedure necessary to assess the current condition of the BES and anticipate effects of planned and unplanned changes to conditions. Aspects of the situation awareness function include:
+                      <br>
+
+                      <ul>
+                        <li>Monitoring and alerting (such as EMS alarms) (TOP, GOP, RC, BA)</li>
+                        <li>Change management (TOP, GOP, RC, BA)</li>
+                        <li>Current day and next day planning (TOP)</li>
+                        <li>Contingency analysis (RC)</li>
+                        <li>Frequency monitoring (BA, RC)</li>
+                      </ul>
+
+                    </p>
+
+                    <%= form.radio_button :q8, "Yes" %> Yes
+                    <%= form.radio_button :q8, "No" %> No
+
+                  </div>
+
+                  <br>
+
+                  <div class="field form-control">
+                    <p>
+                      <strong>6.3.9 Inter-Entity Coordination</strong>
+                      <br>
+                      The inter-entity coordination and communication function includes activities, actions, and conditions established by policy, directive, or standard operating procedure necessary for the coordination and communication between responsible entities to ensure the reliability and operability of the BES. Aspects of the inter-entity coordination and communication function include:
+                      <br>
+
+                      <ul>
+                        <li>Scheduled interchange (BA, TOP, GOP, RC)</li>
+                        <li>Facility operational data and status (TO, TOP, GO, GOP, RC, BA)</li>
+                        <li>Operational directives (TOP, RC, BA)</li>
+                      </ul>
+
+                    </p>
+
+                    <%= form.radio_button :q9, "Yes" %> Yes
+                    <%= form.radio_button :q9, "No" %> No
+
+                  </div>
+                
+                <br>
+                <div class="form-row">
+                  <div class="col">
+                  Justification
+                  <%= form.text_field :justification, id: :bes_cyber_system_BES_cyber_system, required: 'true', class: "form-control" %>
+                </div>
+                </div>
+
+              </div>
+
+<br>
+
+
+
+    <div class="form-row text-center">
+      <div class="col">
+        <% if user_signed_in? and current_page?('/bes_cyber_systems/new') %>
+        <div class="actions">
+          <%= form.submit "Add System", class: "btn-taco-lg" %>
+        </div>
+        <% else %>
+        <div class="actions">
+          <%= form.submit "Update", class: "btn-taco-lg" %>
+        </div>
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</body>

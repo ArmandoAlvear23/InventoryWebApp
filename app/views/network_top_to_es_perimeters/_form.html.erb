@@ -1,0 +1,69 @@
+  <body>
+    <div class="container">
+      <%= form_with(model: network_top_to_es_perimeter, local: true) do |form| %>
+      <% if network_top_to_es_perimeter.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(network_top_to_es_perimeter.errors.count, "error") %> prohibited this network_top_to_es_perimeter from being saved:</h2>
+        <ul>
+          <% network_top_to_es_perimeter.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+
+
+ <div class="form-row">
+
+  <div class="col">
+
+  <div class="field">
+    File Name:
+    <%= form.text_field :nt_file_name, id: :network_top_to_es_perimeter_nt_file_name, class: "form-control", :required=>true %>
+  </div>
+
+</div>
+
+<div class="col">
+
+  <div class="field">
+    ESP ID:
+        <%= form.select(:nt_esp_id, @es_perimeters.all.collect { |p| [ p.esp_id, p.id ] }, {:include_blank => true, :required=>true}, {:class => 'form-control'}) %>
+  </div>
+
+</div>
+
+</div>
+
+<br>
+
+          <div class="form-row">
+
+          <div class="col form-control">
+            Attachment <strong>(PDF ONLY)</strong>:<br>
+            <%= form.file_field :es_pproof, multiple: false %>
+
+            <p>
+              <% if @network_top_to_es_perimeter.es_pproof? %>
+              <%= image_tag(@network_top_to_es_perimeter.es_pproof_url, :class => "photoedit") %>
+              <br>
+              <%= form.check_box :remove_es_pproof %> Remove Attachment
+
+              <% end %>
+
+            </p>
+          </div>
+
+        </div>
+
+<br>
+
+<div class="form-row text-center">
+        <div class="col">
+    <%= form.submit "Add File", class: "btn-taco-lg"%>
+  </div>
+</div>
+<% end %>
+
+</div>
+</body>

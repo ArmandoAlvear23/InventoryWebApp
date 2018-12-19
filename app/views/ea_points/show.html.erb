@@ -1,0 +1,118 @@
+<body>
+  <div class="container">
+    <% if notice != nil %>
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+      <%= notice %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <% end %>
+
+
+
+    <p>
+      <strong>Electronic Access Point ID:</strong>
+      <h1 class="display-4">
+        <%= @ea_point.eap_id %>
+      </h1>
+    </p>
+
+    <p><strong><i>Created at:</i></strong> <%= @ea_point.created_at.strftime("%m-%d-%Y, %r") %> &nbsp <strong><i>Updated at:</i></strong> <%= @ea_point.updated_at.strftime("%m-%d-%Y, %r") %></p>
+
+    <div class="form-group">
+
+
+      <div class="form-row">
+
+        <div class="col form-control">
+          <p>
+            <strong>Interface Name: </strong>
+            <%= @ea_point.eap_interface %>
+          </p>
+        </div>
+
+        <br>
+        <div class="col-md-auto"></div>
+        <br>
+
+        <div class="col form-control">
+          <p>
+            <strong>IP Address: </strong>
+            <%= @ea_point.eap_ip %>
+          </p>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="form-row">
+
+        <div class="col form-control">
+          <p>
+            <strong>Cyber Asset ID of EACMS: </strong>
+            <%= @ea_point.eap_ca_eacms %>
+          </p>
+        </div>
+
+        <br>
+        <div class="col-md-auto"></div>
+        <br>
+
+        <div class="col form-control">
+          <p>
+            <strong>Electronic Security Perimter ID: </strong>
+            <%= @ea_point.eap_esp_id %>
+          </p>
+        </div>
+
+      </div>
+
+      <br>
+
+       <ul class="list-group">
+
+          <strong>Access List:</strong>
+
+          <% @access_list_to_ea_points.each do |t| %>
+            <% if t.al_eap_id.to_f == @ea_point.id %>
+
+            <li class="list-group-item list-group-item-action">
+             <div class="row">
+              <div class="col">
+                <%= t.al_file_name %>
+              </div>
+
+              <div class="col-md-auto">
+                <i><strong>Uploaded on</strong></i>
+                <%= t.created_at.strftime("%m-%d-%Y at %r") %>
+              </div>
+
+              <div class="col-md-auto">
+                <% if t.ea_pproof? %>
+                <%= link_to "OPEN", t.ea_pproof.url, target: '_blank', class: "btn btn-outline-secondary" %>
+                <% else %>
+                <strong>NO PDF</strong>
+                <% end %>
+              </div>
+            </div>
+          </li>
+
+            <% end %>
+          <% end %>
+        </ul>
+
+
+    </div>
+    
+    <br>
+
+    <div class="text-center">
+      <%= link_to 'Edit EAP', edit_ea_point_path(@ea_point), class: "btn-taco-lg" %>
+      <%= link_to 'Back to ESPs', ea_points_path, class: "btn-taco-lg" %>
+      <%= link_to 'Add File', new_access_list_to_ea_point_path, class: "btn-taco-lg" %>
+    </div>
+
+  </div>
+  <br>
+</body>

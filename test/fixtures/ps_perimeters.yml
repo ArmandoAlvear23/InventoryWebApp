@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  psp_id: MyString
+  psp_description: MyString
+  psp_location: MyString
+  psp_asset_id: MyString
+  psp_diagrams: MyString
+
+two:
+  psp_id: MyString
+  psp_description: MyString
+  psp_location: MyString
+  psp_asset_id: MyString
+  psp_diagrams: MyString

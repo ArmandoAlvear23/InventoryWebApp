@@ -1,0 +1,82 @@
+
+<body>
+
+  <div class="container">
+
+    <br><br><br>
+
+
+    <div class="row justify-content-center">
+
+      <div class="col">
+      </div>
+
+      <div class=" col align-self-center form-control text-center">
+
+        <img class="mb-4" src="/assets/pub-logo.png" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
+
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <% if devise_error_messages! != "" %>
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+          <p><%= devise_error_messages! %></p>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <%end%>
+        
+
+        <div class="field">
+          <%= f.text_field :first_name, autofocus: true, placeholder: "First Name",autocomplete: "first name", class: "form-control" %>
+        </div>
+
+        <br>
+
+        <div class="field">
+          <%= f.text_field :last_name, placeholder: "Last Name", autocomplete: "last name", class: "form-control" %>
+        </div>
+
+        <br>
+
+        <div class="field">
+          <%= f.email_field :email, placeholder: "E-mail", autocomplete: "email", class: "form-control" %>
+        </div>
+
+        <br>
+
+        <div class="field">
+          
+          <%= f.password_field :password, placeholder: "Password (minimum 6 characters)", autocomplete: "off", class: "form-control" %>
+        </div>
+
+        <br>
+
+        <div class="field">
+          <%= f.password_field :password_confirmation, placeholder: "Confirm Password", autocomplete: "off", class: "form-control" %>
+        </div>
+
+        <br>
+
+        <div class="actions">
+          <%= f.submit "Sign up", class: "btn btn-lg btn-primary btn-block" %>
+        </div>
+        <% end %>
+
+        <%= render "devise/shared/links", class: "text-center" %>
+                <p class="mt-5 mb-3 text-muted">© 2018</p>
+
+      </div>
+
+      <div class="col">
+
+      </div>
+
+    </div>
+  </div>
+
+</body>
+
+<!--<% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />-->

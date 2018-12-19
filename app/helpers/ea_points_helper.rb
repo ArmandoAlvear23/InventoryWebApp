@@ -1,0 +1,2 @@
+module EaPointsHelper
+end

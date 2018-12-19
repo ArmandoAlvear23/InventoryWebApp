@@ -1,0 +1,57 @@
+<body>
+  <div class="container">
+
+    <% if notice != nil %>
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+      <%= notice %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <% end %>
+
+
+    <%= form_for_filterrific @feap do |f| %>
+
+    <div class="filter-taco">
+
+      <div class="form-row align-items-center">
+        <div class="col">
+          Search:
+          <%= f.text_field(:search_query, class: 'filterrific-periodically-observed form-control') %>
+        </div>
+
+        <div class="col">
+          Sorted By:
+          <%= f.select(:sorted_by, @feap.select_options[:sorted_by], {}, {:class =>"form-control"}) %>
+        </div>
+
+      </div>
+
+      <div class="form-row align-items-center">
+
+        <div class="col">
+          Cyber Asset ID:
+          <%= f.select(:with_cyber_asset_id, @bes_cyber_assets.all.collect { |p| [ p.ca_id, p.ca_id ] }, { :include_blank => '- Any -'}, {:class => 'form-control'}) %> 
+        </div>
+
+        <div class="col">
+          ESP ID:
+          <%= f.select(:with_esp_id, @es_perimeters.all.collect { |p| [ p.esp_id, p.esp_id ] }, { :include_blank => '- Any -'}, {:class => 'form-control'}) %> 
+        </div>
+      </div>
+
+      <br>
+
+      <div class="form-row align-items-center">
+        <div class="col"></div>
+        <div class="col-md-auto"><%= link_to('Export', ea_points_path(:format => :csv), :class=>"btn-taco") %></div>
+        <div class="col-md-auto"><%= link_to('Reset Filters', reset_filterrific_url, :class=>"btn-taco") %></div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+  <%= render(partial: 'ea_points/list', locals: { ea_points: @ea_points } ) %>
+
+</body>

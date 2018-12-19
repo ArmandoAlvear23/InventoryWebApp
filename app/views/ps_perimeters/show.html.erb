@@ -1,0 +1,104 @@
+<body>
+  <div class="container">
+    <% if notice != nil %>
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+      <%= notice %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <% end %>
+
+    <p>
+      <strong>Physical Security Point ID:</strong>
+      <h1 class="display-4">
+        <%= @ps_perimeter.psp_id %>
+      </h1>
+    </p>
+
+    <p>
+      <strong><i>Created at:</i></strong> 
+      <%= @ps_perimeter.created_at.strftime("%m-%d-%Y, %r") %> &nbsp 
+      <strong><i>Updated at:</i></strong> <%= @ps_perimeter.updated_at.strftime("%m-%d-%Y, %r") %>
+    </p>
+
+    <div class="form-group">
+
+      <div class="form-row">
+        <div class="col form-control">
+          <p>
+            <strong>Description:</strong>
+            <%= @ps_perimeter.psp_description %>
+          </p>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="form-row">
+        <div class="col form-control">
+          <p>
+            <strong>Asset ID: </strong>
+            <%= @ps_perimeter.psp_asset_id %>
+          </p>
+        </div>
+
+        <br>
+        <div class="col-md-auto"></div>
+        <br>
+
+        <div class="col form-control">
+          <p>
+            <strong>Location: </strong>
+            <%= @ps_perimeter.psp_location %>
+          </p> 
+        </div>
+      </div>
+
+<br>
+
+      <ul class="list-group">
+
+          <strong>PSP Diagrams:</strong>
+
+          <% @psp_diagrams_to_ps_perimeters.each do |t| %>
+            <% if t.psp_dia_psp_id.to_f == @ps_perimeter.id %>
+
+            <li class="list-group-item list-group-item-action">
+             <div class="row">
+              <div class="col">
+                <%= t.psp_dia_file_name %>
+              </div>
+
+              <div class="col-md-auto">
+                <i><strong>Uploaded on</strong></i>
+                <%= t.created_at.strftime("%m-%d-%Y at %r") %>
+              </div>
+
+              <div class="col-md-auto">
+                <% if t.ps_pproof? %>
+                <%= link_to "OPEN", t.ps_pproof.url, target: '_blank', class: "btn-taco-med" %>
+                <% else %>
+                <strong>NO PDF</strong>
+                <% end %>
+              </div>
+            </div>
+          </li>
+
+            <% end %>
+          <% end %>
+        </ul>
+
+    </div>
+
+    <br>
+
+    <div class="text-center">
+      <%= link_to 'Edit PSP', edit_ps_perimeter_path(@ps_perimeter), class: "btn-taco-lg" %>
+      <%= link_to 'Back to PSPs', ps_perimeters_path, class: "btn-taco-lg" %>
+      <%= link_to 'Add File', new_psp_diagrams_to_ps_perimeter_path, class: "btn-taco-lg" %>
+    </div>
+
+  </div>
+  <br>
+</body>

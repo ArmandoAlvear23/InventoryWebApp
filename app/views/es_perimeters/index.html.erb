@@ -1,0 +1,43 @@
+<div class="container">
+
+    <% if notice != nil %>
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+      <%= notice %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <% end %>
+
+<%= form_for_filterrific @fesp do |f| %>
+
+    <div class="filter-taco">
+
+      <div class="form-row align-items-center">
+
+        <div class="col">
+          Search:
+          <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+          <%= f.text_field(:search_query, class: 'filterrific-periodically-observed form-control') %>
+        </div>
+
+        <div class="col">
+          Sorted By:
+          <%= f.select(:sorted_by, @fesp.select_options[:sorted_by], {}, {:class=>"form-control"}) %>
+        </div>
+
+      </div>
+
+      <br>
+
+      <div class="form-row align-items-center">
+          <div class="col"></div>
+          <div class="col-md-auto"><%= link_to('Export', es_perimeters_path(:format => :csv), :class=>"btn-taco") %></div>
+          <div class="col-md-auto"><%= link_to('Reset Filters', reset_filterrific_url, :class=>"btn-taco") %></div>
+        </div>
+    </div>
+    <% end %>
+
+  </div>
+
+    <%= render(partial: 'es_perimeters/list', locals: { es_perimeters: @es_perimeters } ) %>

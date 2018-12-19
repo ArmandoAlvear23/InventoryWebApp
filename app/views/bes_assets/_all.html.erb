@@ -1,0 +1,62 @@
+    <div class="row">
+      <div class="col" align="left">
+        <h1 class="display-4">BES Assets</h1>
+      </div>
+    </div>
+
+    <br>
+
+    <div align="center" style="overflow-x: auto">
+
+      <table  class=" table table-responsive table-hover">
+        <thead>
+          <tr>
+            <th scope="col">&nbsp;&nbsp;&nbsp;Asset</th>
+            <th scope="col" class="text-center">Type</th>
+            <th scope="col">Description</th>
+            <th scope="col" class="text-center">Commission</th>
+            <th scope="col" class="text-center">Decommission</th>
+            <th scope="col" class="text-center">High</th>
+            <th scope="col" class="text-center">Medium</th>
+            <th scope="col" class="text-center">Low</th>
+            <th scope="col" class="text-center">ERC?</th>
+            <th scope="col" class="text-center">Dial-Up?</th>
+            <th scope="col" class="text-center">Region</th>
+            <th scope="col" class="text-center">Register</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @bes_assets.each do |bes_asset| %>
+          <tr>
+            <td>
+              <div class="dropdown dropright">
+                <button class="btn btn-link dropdown-toggle" type="button" id="<%= bes_asset.asset_id %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <%= bes_asset.asset_id %>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="<%= bes_asset.asset_id %>">
+                  <a><%= link_to 'Show', bes_asset, class: "dropdown-item" %></a>
+                  <a><%= link_to 'Edit', edit_bes_asset_path(bes_asset), class: "dropdown-item"%></a>  
+                  <a><%= link_to "Delete", bes_asset, :method=>:delete, :class=>:destroy, data: { confirm: 'Are you sure you want to delete the selected BES Asset?' },class: "dropdown-item"%></a>
+                </div>
+              </div>
+            </td>
+            <td class="text-center"><%= bes_asset.asset_type %></td>
+            <td><%= bes_asset.description %></td>
+            <td class="text-center"><%= bes_asset.commission %></td>
+            <td class="text-center"><%= bes_asset.decommission %></td>
+            <td class="text-center"><%= bes_asset.high_impact %></td>
+            <td class="text-center"><%= bes_asset.medium_impact %></td>
+            <td class="text-center"><%= bes_asset.low_impact %></td>
+            <td class="text-center"><%= bes_asset.erc %></td>
+            <td class="text-center"><%= bes_asset.dial_up %></td>
+            <td class="text-center"><%= bes_asset.region_op %></td>
+            <td class="text-center"> <%= bes_asset.register_func %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <br>
+
+  </div>

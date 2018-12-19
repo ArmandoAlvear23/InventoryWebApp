@@ -1,0 +1,64 @@
+<%# app/views/students/_list.html.erb %>
+
+<div id="filterrific_results">
+  <br>
+
+  <div class="container">
+    <%= page_entries_info ps_perimeters, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+    <%= render_filterrific_spinner %>
+  </div>
+
+  <br>
+
+  <div class="container-fluid">
+    <div style="overflow-x: auto">
+
+      <table  class=" table table-striped table-responsive table-hover table-taco">
+        <thead>
+          <tr>
+            <th scope="col">&nbsp;&nbsp;&nbsp;PSP ID</th>
+            <th scope="col" class="text-center">Description</th>
+            <th scope="col" class="text-center">Location</th>
+            <th scope="col" class="text-center">Asset ID</th>
+            <th scope="col" class="text-center">Created At</th>
+            <th scope="col" class="text-center">Updated At</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @ps_perimeters.each do |psp| %>
+          <tr>
+            <td>
+              <div class="dropdown dropright">
+                <button class="btn btn-link dropdown-toggle" type="button" id="<%= psp.psp_id %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <%= psp.psp_id %>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="<%= psp.psp_id %>">
+                  <a><%= link_to 'Show', psp, class: "dropdown-item" %></a>
+                  <a><%= link_to 'Edit', edit_ps_perimeter_path(psp), class: "dropdown-item"%></a>  
+                  <a><%= link_to "Delete", psp, :method=>:delete, :class=>:destroy, data: { confirm: 'Are you sure you want to delete the selected Physical Security Perimeter?' },class: "dropdown-item" %></a>
+                </div>
+              </div>
+            </td>
+            <td class="text-center"><%= psp.psp_description %></td>
+            <td class="text-center"><%= psp.psp_location %></td>
+            <td class="text-center"><%= psp.psp_asset_id %></td>
+            <td class="text-center"><%= psp.created_at.strftime("%m-%d-%Y, %r") %></td>
+            <td class="text-center"><%= psp.updated_at.strftime("%m-%d-%Y, %r") %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="divider"></div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="container">
+    <%= will_paginate ps_perimeters, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, list_classes: %w(pagination justify-content-center) %>
+  </div>
+
+</div>
+<br>
+

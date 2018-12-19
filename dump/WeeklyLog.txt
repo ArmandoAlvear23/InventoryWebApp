@@ -1,0 +1,28 @@
+--------------------WEEK 1----------------------
+Created a Login Page
+	-New User
+	-Forgot Password
+	-Secure Login
+	-Sign out button
+
+--------------------WEEK 2----------------------
+Created a Home Page
+	-Worked on layout and design of the page
+	-Worked on the data flow of the page
+	-Change Password link
+	-Add BES Assets Button
+	-Add BES Cyber Systems Button
+	-Add BES Cyber Assets Button
+	-Brownsville PUB link to home
+	-Added scrolling and resizing capabilities to each module
+
+--------------------WEEK 3----------------------
+Created database for BES Assets
+	-implemented add new record button
+	-implemented edit button
+	-implemented delete button
+	-implemented a page to view all records
+	-linked from home page to records page
+	-cleaned up code and worked on aesthetics 
+
+	

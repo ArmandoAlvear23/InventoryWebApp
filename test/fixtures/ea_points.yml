@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  eap_id: MyString
+  eap_interface: MyString
+  eap_ip: MyString
+  eap_ca_eacms: MyString
+  eap_esp_id: MyString
+  eap_access_list: MyString
+
+two:
+  eap_id: MyString
+  eap_interface: MyString
+  eap_ip: MyString
+  eap_ca_eacms: MyString
+  eap_esp_id: MyString
+  eap_access_list: MyString

@@ -1,0 +1,517 @@
+<!-- <li><p id="CC1in"></p></li>
+              <li><p id="CC2in"></p></li>
+              <li><p id="CC3in"></p></li>
+              <li><p id="CC4in"></p></li>
+              <li><p id="CC5in"></p></li> 
+              <li><p id="CC6in"></p></li>
+              <li><p id="CC7in"></p></li> 
+              <li><p id="CC8in"></p></li> 
+              <li><p id="CCRating"></p></li> -->
+
+              <!-- Modal Add BES Asset -->
+      <div class="modal fade" id="modalAddBESAsset" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Add BES Asset Item</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" align="center">
+              <p>Please choose a category below.</p>
+
+              <span style="margin-bottom: 0.5em; display:inline-block;">
+                <form action="/bes_assets/new">
+                  <button type="submit" id="btnCC" class="btn btn-outline-secondary" value="0" onclick="cc()">Control Centers (CC)</button>
+                </form>
+              </span>
+              <br>
+
+              <span style="margin-bottom: 0.5em; display:inline-block;">
+                <form action="/bes_assets/new">
+                  <button type="submit" id="btnTF" class="btn btn-outline-secondary" value="1" onclick="tf()">Transmission Substations and Switchyards (TF)</button>
+                </form>
+              </span>
+              <br>
+              
+              <span style="margin-bottom: 0.5em; display:inline-block;" >
+                <form action="/bes_assets/new">
+                  <button type="submit" id="btnG" class="btn btn-outline-secondary" value="2" onclick="g()">Generation Resources (G)</button>
+                </form>
+              </span>
+              <br>
+              
+              <span style="margin-bottom: 0.5em; display:inline-block;">
+                <form action="/bes_assets/new">
+                  <button type="submit" id="btnAA" class="btn btn-outline-secondary" value="3" onclick="aa()">Additional Assets (AA)</button>
+                </form>
+              </span>
+              <br>
+              <form action="/bes_assets/new">
+                <button type="submit" id="btnDP" class="btn btn-outline-secondary" value="4" onclick="dp()">Distribution Resources (DP)</button>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <script>
+        function RadioValidator(){
+          var ShowAlert = '';
+          var AllFormElementsCC = window.document.getElementById("CC1Radios").elements; 
+
+          for (i = 0; i < AllFormElementsCC.length; i++)
+          {
+            if (AllFormElementsCC[i].type == "radio")
+            {
+              var ThisRadio = AllFormElementsCC[i].name;
+              var ThisChecked = "No";
+              var AllRadioOptions = document.getElementByName(ThisRadio);
+              for (x=0; x < AllRadioOptions.length; x++)
+              {
+                if(AllRadioOptions[x].checked && ThisChecked == 'No')
+                {
+                  ThisChecked = 'Yes';
+                  break;
+                }
+              }
+              var AlreadySearched = ShowAlert.indexOf(ThisRadio);
+              if (ThisChecked == 'No' && AlreadySearched == -1)
+              {
+                ShowAlert = ShowAlert + ThisRadio + 'radio button must be answered\n';
+              }
+            }
+          }
+          if(ShowAlert != '')
+          {
+            alert(ShowAlert);
+            return false;
+          }
+          else
+          {
+            return true;
+          }
+
+          saveCCData(1,1,1,1,1,1,1,1);
+        </script> -->
+
+        <script>
+
+        function saveCCData(cc1, cc2, cc3, cc4, cc5, cc6, cc7, cc8){
+          var CCData = {
+            CC1: cc1,
+            CC2: cc2,
+            CC3: cc3,
+            CC4: cc4,
+            CC5: cc5,
+            CC6: cc6,
+            CC7: cc7,
+            CC8: cc8,
+          };
+
+          account = JSON.stringify(CCData);
+          account = btoa(CCData);
+          localStorage.setItem('_CCData', CCData);
+        }
+
+
+      </script>
+
+      !-- Modal Add BES Asset: TEMPLATE -->
+      <!-- <div class="modal fade bd-example-modal-lg" id="modalAddBESAsset" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Add BES Asset: </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form>
+              <div class="modal-body" align="center" style="position: relative; height: 420; overflow: auto">
+
+                <p>
+                  <strong></strong>
+                  <br>
+                  
+                  <br>
+                  <input type="radio" name="1" value="y">&nbspYes&nbsp
+                  <input type="radio" name="1" value="n">&nbspNo  
+                  <br>
+                </p>
+
+                <p>
+                  <strong></strong>
+                  <br>
+                  
+                  <br>
+                  <input type="radio" name="2" value="y">&nbspYes&nbsp 
+                  <input type="radio" name="2" value="n">&nbspNo 
+                  <br>
+                </p>
+
+                <p>
+                  <strong></strong>
+                  <br>
+                  
+                  <br>
+                  <input type="radio" name="3" value="y">&nbspYes&nbsp
+                  <input type="radio" name="3" value="n">&nbspNo 
+                  <br>
+                </p>
+
+                <p>
+                  <strong></strong>
+                  <br>
+                  
+                  <br>
+                  <input type="radio" name="4" value="y">&nbspYes&nbsp
+                  <input type="radio" name="4" value="n">&nbspNo 
+                  <br>
+                </p>
+
+                <p>
+                  <strong></strong>
+                  <br>
+                  
+                  <br>
+                  <input type="radio" name="5" value="y">&nbspYes&nbsp
+                  <input type="radio" name="5" value="n">&nbspNo 
+                  <br>
+                </p>
+
+                <p>
+                  <strong></strong>
+                  <br>
+                  
+                  <br>
+                  <input type="radio" name="6" value="y">&nbspYes&nbsp
+                  <input type="radio" name="6" value="n">&nbspNo 
+                  <br>
+                </p>
+
+                <p>
+                  <strong></strong>
+                  <br>
+                  
+                  <br>
+                  <input type="radio" name="7" value="y">&nbspYes&nbsp
+                  <input type="radio" name="7" value="n">&nbspNo 
+                  <br>
+                </p>
+
+                <p>
+                  <strong></strong>
+                  <br>
+                  
+                  <br>
+                  <input type="radio" name="8" value="y">&nbspYes&nbsp
+                  <input type="radio" name="8" value="n">&nbspNo 
+                  <br>
+                </p>
+
+              </div>
+            </form>
+
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    -->
+
+    <p id="CC1in"></p>
+            <p id="CC2in"></p>
+            <p id="CC3in"></p>
+            <p id="CC4in"></p>
+            <p id="CC5in"></p>
+            <p id="CC6in"></p>
+            <p id="CC7in"></p>
+            <p id="CC8in"></p>
+            <p id="CCRating"></p>
+
+
+
+
+
+
+
+               <!-- Modal Add BES Asset: Control Center -->
+      <div class="modal fade bd-example-modal-lg" id="modalAddBESAssetCC" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Add BES Asset: 6.2.1.1 Control Center (CC)</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form action="/" id = CC1Radios>
+              <div class="modal-body" align="center" style="position: relative; height: 420; overflow: auto">
+
+                <p>
+                  <strong>CC1 (1.1 - High)</strong>
+                  <br>
+                  Each control center or backup control center used to perform the functional obligations of the Reliability Coordinator.
+                  <br>
+                  <input type="radio" name="cc1" id="cc1a" value="1">&nbspYes&nbsp
+                  <input type="radio" name= "cc1" id="cc1b" value="0">&nbspNo  
+                  <br>
+                </p>
+                <p>
+                  <strong>CC2 (1.2 - High)</strong>
+                  <br>
+                  Each control center or backup control center used to perform the functional obligations of the Balancing Authority:
+                  <br>
+                  1. For generation equal to or greater than an aggregate of 3000 MW in a single interconnection, or
+                  <br>
+                  2. For one or more of the assets that meet criterion G2, G3, or AA1.
+                  <br>
+                  <input type="radio" name="CC2" id="cc2a" value="1">&nbspYes&nbsp 
+                  <input type="radio" name="CC2" id="cc2b" value="0">&nbspNo 
+                  <br>
+                </p>
+                <p>
+                  <strong>CC3 (1.3 - High)</strong>
+                  <br>
+                  Each control center or backup control center used to perform the functional obligations of the Transmission Operator for one or more of the assets that meet criterion TF1, TF2, TF3, TF5, TF6, AA1, or AA2.
+                  <br>
+                  <input type="radio" name="CC3" id="cc3a" value="1">&nbspYes&nbsp
+                  <input type="radio" name="CC3" id="cc3b" value="0">&nbspNo 
+                  <br>
+                </p>
+                <p>
+                  <strong>CC4 (1.4 - High)</strong>
+                  <br>
+                  Each control center or backup control center used to perform the functional obligations of the Generator Operator for one or more of the assets that meet criterion G1, G2, G3, or AA1.
+                  <br>
+                  <input type="radio" name="CC4" id="cc4a" value="1">&nbspYes&nbsp
+                  <input type="radio" name="CC4" id="cc4b" value="0">&nbspNo 
+                  <br>
+                </p>
+                <p>
+                  <strong>CC5 (2.11 - Medium)</strong>
+                  <br>
+                  Each control center or backup control center, not already included in High Impact Rating (H) above, used to perform the functional obligations of the Generator Operator for an aggregate highest rated net real power capability of the preceding 12 calendar months equal to or exceeding 1500 MW in a single Interconnection.
+                  <br>
+                  <input type="radio" name="CC5" id="cc5a" value="1">&nbspYes&nbsp
+                  <input type="radio" name="CC5" id="cc5b" value="0">&nbspNo 
+                  <br>
+                </p>
+                <p>
+                  <strong>CC6 (2.12 - Medium)</strong>
+                  <br>
+                  Each control center or backup control center used to perform the functional obligations of the Transmission Operator not included in High Impact Rating (H), above.
+                  <br>
+                  <input type="radio" name="CC6" id="cc6a" value="1">&nbspYes&nbsp
+                  <input type="radio" name="CC6" id="cc6b" value="0">&nbspNo 
+                  <br>
+                </p>
+                <p>
+                  <strong>CC7 (2.13 - Medium)</strong>
+                  <br>
+                  Each control center or backup control center, not already included in High Impact Rating (H) above, used to perform the functional obligations of the Balancing Authority of generation equal to or greater than an aggregate of 1500 MW in a single Interconnection.
+                  <br>
+                  <input type="radio" name="CC7" id="cc7a" value="1">&nbspYes&nbsp
+                  <input type="radio" name="CC7" id="cc7b" value="0">&nbspNo 
+                  <br>
+                </p>
+                <p>
+                  <strong>CC8 (3.1 - Low)</strong>
+                  <br>
+                  Control centers and backup control centers having BES Cyber Systems not meeting any other impact criteria.
+                  <br>
+                  <input type="radio" name="CC8" id="cc8a" value="1">&nbspYes&nbsp
+                  <input type="radio" name="CC8" id="cc8b" value="0">&nbspNo 
+                  <br>
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick ="CCRadios()" data-dismiss="modal">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+        <script>
+          function CCRadios(){
+
+            var rating = "";
+            var y = "yes";
+            var n = "no";
+
+            var CC1isChecked = document.getElementById('cc1a').checked;
+            if(CC1isChecked)
+            {
+              var cca1 = document.getElementById("cc1a").value;
+              document.getElementById("CC1in").innerHTML = cca1;
+              localStorage.setItem('cc1', y);
+            }
+            else{
+              var ccb1 = document.getElementById("cc1b").value;
+              document.getElementById("CC1in").innerHTML = ccb1;
+              localStorage.setItem('cc1', n);
+            }
+
+
+            var CC2isChecked = document.getElementById('cc2a').checked;
+            if(CC2isChecked)
+            {
+              var cca2 = document.getElementById("cc2a").value;
+              document.getElementById("CC2in").innerHTML = cca2;
+              localStorage.setItem('cc2', y);
+            }
+            else{
+              var ccb2 = document.getElementById("cc2b").value;
+              document.getElementById("CC2in").innerHTML = ccb2;
+              localStorage.setItem('cc2', n);
+            }
+
+            var CC3isChecked = document.getElementById('cc3a').checked;
+            if(CC3isChecked)
+            {
+              var cca3 = document.getElementById("cc3a").value;
+              document.getElementById("CC3in").innerHTML = cca3;
+              localStorage.setItem('cc3', y);
+            }
+            else{
+              var ccb3 = document.getElementById("cc3b").value;
+              document.getElementById("CC3in").innerHTML = ccb3;
+              localStorage.setItem('cc3', n);
+            }
+
+            var CC4isChecked = document.getElementById('cc4a').checked;
+            if(CC4isChecked)
+            {
+              var cca4 = document.getElementById("cc4a").value;
+              document.getElementById("CC4in").innerHTML = cca4;
+              localStorage.setItem('cc4', y);
+            }
+            else{
+              var ccb4 = document.getElementById("cc4b").value;
+              document.getElementById("CC4in").innerHTML = ccb4;
+              localStorage.setItem('cc4', n);
+            }
+
+            var CC5isChecked = document.getElementById('cc5a').checked;
+            if(CC5isChecked)
+            {
+              var cca5 = document.getElementById("cc5a").value;
+              document.getElementById("CC5in").innerHTML = cca5;
+              localStorage.setItem('cc5', y);
+            }
+            else{
+              var ccb5 = document.getElementById("cc5b").value;
+              document.getElementById("CC5in").innerHTML = ccb5;
+              localStorage.setItem('cc5', n);
+            }
+
+            var CC6isChecked = document.getElementById('cc6a').checked;
+            if(CC6isChecked)
+            {
+              var cca6 = document.getElementById("cc6a").value;
+              document.getElementById("CC6in").innerHTML = cca6;
+              localStorage.setItem('cc6', y);
+            }
+            else{
+              var ccb6 = document.getElementById("cc6b").value;
+              document.getElementById("CC6in").innerHTML = ccb6;
+              localStorage.setItem('cc6', n);
+            }
+
+            var CC7isChecked = document.getElementById('cc7a').checked;
+            if(CC7isChecked)
+            {
+              var cca7 = document.getElementById("cc7a").value;
+              document.getElementById("CC7in").innerHTML = cca7;
+              localStorage.setItem('cc7', y);
+            }
+            else{
+              var ccb7 = document.getElementById("cc7b").value;
+              document.getElementById("CC7in").innerHTML = ccb7;
+              localStorage.setItem('cc7', n);
+            }
+
+            var CC8isChecked = document.getElementById('cc8a').checked;
+            if(CC8isChecked)
+            {
+              var cca8 = document.getElementById("cc8a").value;
+              document.getElementById("CC8in").innerHTML = cca8;
+              localStorage.setItem('cc8', y);
+            }
+            else{
+              var ccb8 = document.getElementById("cc8b").value;
+              document.getElementById("CC8in").innerHTML = ccb8;
+              localStorage.setItem('cc8', n);
+            }
+
+            if (CC1isChecked || CC2isChecked || CC3isChecked || CC4isChecked)
+            {
+             rating = "High";
+             localStorage.setItem('high', 'TRUE');
+             
+           }
+           else if (CC5isChecked || CC6isChecked || CC7isChecked)
+           {
+            rating = "Medium";
+            localStorage.setItem('medium', 'TRUE');
+            
+          }
+          else if (CC8isChecked)
+          {
+            rating = "Low";
+            localStorage.setItem('low', 'TRUE');
+          }
+          document.getElementById("CCRating").innerHTML = rating;
+        }
+      </script>
+
+     
+
+
+
+     <script>
+  function cc()
+  {
+    localStorage.clear();
+    var btn = document.getElementById("btnCC").value;
+    localStorage.setItem("btn", btn);
+  }
+
+    function tf()
+  {
+    localStorage.clear();
+    var btn = document.getElementById("btnTF").value;
+    localStorage.setItem("btn", btn);
+  }
+
+    function g()
+  {
+    localStorage.clear();
+    var btn = document.getElementById("btnG").value;
+    localStorage.setItem("btn", btn);
+  }
+
+    function aa()
+  {
+    localStorage.clear();
+    var btn = document.getElementById("btnAA").value;
+    localStorage.setItem("btn", btn);
+  }
+
+    function dp()
+  {
+    localStorage.clear();
+    var btn = document.getElementById("btnDP").value;
+    localStorage.setItem("btn", btn);
+  }
+</script>

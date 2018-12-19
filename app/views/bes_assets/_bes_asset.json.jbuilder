@@ -1,0 +1,2 @@
+json.extract! bes_asset, :id, :asset_id, :asset_type, :description, :commission, :decommission, :location, :high_impact, :medium_impact, :low_impact, :erc, :dial_up, :region_op, :register_func, :cc1, :cc2, :cc3, :cc4, :cc5, :cc6, :cc7, :cc8, :tf1, :tf2, :tf3, :tf4, :tf5, :tf6, :tf7, :tf8, :g1, :g2, :g3, :g4, :g5, :aa1, :aa2, :aa3, :dp1, :created_at, :updated_at
+json.url bes_asset_url(bes_asset, format: :json)

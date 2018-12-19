@@ -1,0 +1,76 @@
+  <body>
+    <div class="container">
+      <%= form_with(model: es_perimeter, local: true) do |form| %>
+      <% if es_perimeter.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(es_perimeter.errors.count, "error") %> prohibited this es_perimeter from being saved:</h2>
+        <ul>
+          <% es_perimeter.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+
+      <div class="form-row">
+
+
+        <div class="col form-control">
+          <div class="field">
+            Electronic Security Perimeter ID
+            <%= form.text_field :esp_id, id: :es_perimeter_esp_id, class: 'form-control' %>
+          </div>
+
+          <div class="field">
+            Description
+            <%= form.text_field :esp_description, id: :es_perimeter_esp_description, class: 'form-control' %>
+          </div>
+
+          <div class="field">
+            Network Address
+            <%= form.text_field :esp_network, id: :es_perimeter_esp_network, class: 'form-control' %>
+          </div>
+        </div>
+
+        <br>
+        <div class="md-col-auto"></div>
+        <br>
+
+        <div class="col form-control">
+          <div class="field">
+            External Routable Connectivity?
+            <%= form.select(:esp_conn, [["No", "False"], ["Yes", "True"]], {}, {:class => 'form-control'})%>
+          </div>
+
+          <div class="field">
+            Interactive Remote Access?
+            <%= form.select(:esp_remote, [["No", "False"], ["Yes", "True"]], {}, {:class => 'form-control'})%>
+          </div>
+
+          <div class="field">
+            EACMS for Interactive Remote Access
+            <%= form.select(:esp_eacms, @bes_cyber_assets.where("ca_classification == 'EACMS'").collect { |p| [ p.ca_id ] }, {:include_blank => true}, {:class => 'form-control'}) %>
+          </div>
+        </div>
+
+
+      </div>
+
+      <br>
+
+      <div class="form-row text-center">
+        <div class="col">
+          <% if user_signed_in? and current_page?('/es_perimeters/new') %>
+          <div class="actions">
+            <%= form.submit "Add ESP", class: "btn-taco-lg" %>
+          </div>
+          <% else %>
+          <div class="actions">
+            <%= form.submit "Update", class: "btn-taco-lg" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </body>

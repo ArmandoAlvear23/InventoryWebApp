@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Asset</Data></Cell>
+        <Cell><Data ss:Type="String">Type</Data></Cell>
+        <Cell><Data ss:Type="String">Description</Data></Cell>
+        <Cell><Data ss:Type="String">Commission</Data></Cell>
+      </Row>
+    <% @bes_assets.each do |bes_asset| %>
+      <Row>
+        <Cell><Data ss:Type="Srting"><%= bes_asset.asset_id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= bes_asset.asset_type %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= bes_asset.description %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= bes_asset.commission.strftime("%b %d, %Y") %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

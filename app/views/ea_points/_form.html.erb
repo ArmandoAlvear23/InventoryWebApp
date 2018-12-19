@@ -1,0 +1,76 @@
+<body>
+  <div class="container">
+
+    <%= form_with(model: ea_point, local: true) do |form| %>
+    <% if ea_point.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ea_point.errors.count, "error") %> prohibited this ea_point from being saved:</h2>
+      <ul>
+        <% ea_point.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+    <div class="form-row">
+
+
+      <div class="col form-control">
+
+        <div class="field">
+          Electronic Access Point ID
+          <%= form.text_field :eap_id, id: :ea_point_eap_idd, class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          Interface Name
+          <%= form.text_field :eap_interface, id: :ea_point_eap_interfaced, class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          IP Address
+          <%= form.text_field :eap_ip, id: :ea_point_eap_ipd, class: 'form-control' %>
+        </div>
+
+      </div>
+
+      <br>
+      <div class="md-col-auto"></div>
+      <br>
+
+      <div class="col form-control">
+
+        <div class="field">
+          Cyber Asset ID of EACMS
+          <%= form.select(:eap_ca_eacms, @bes_cyber_assets.where("ca_classification == 'EACMS'").collect { |p| [ p.ca_id ] }, {:include_blank => true}, {:class => 'form-control'}) %>
+        </div>
+
+        <div class="field">
+          Electronic Security Perimeter ID
+          <%= form.select(:eap_esp_id, @es_perimeters.all.collect { |p| [ p.esp_id, p.esp_id ] }, {:include_blank => true}, {:class => 'form-control'}) %>
+        </div>
+
+      </div>
+
+
+    </div>
+
+    <br>
+
+    <div class="form-row text-center">
+      <div class="col">
+        <% if user_signed_in? and current_page?('/ea_points/new') %>
+        <div class="actions">
+          <%= form.submit "Add EAP", class: "btn-taco-lg" %>
+        </div>
+        <% else %>
+        <div class="actions">
+          <%= form.submit "Update", class: "btn-taco-lg" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</body>

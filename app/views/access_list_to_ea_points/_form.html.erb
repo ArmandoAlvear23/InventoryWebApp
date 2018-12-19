@@ -1,0 +1,64 @@
+  <body>
+    <div class="container">
+      <%= form_with(model: access_list_to_ea_point, local: true) do |form| %>
+      <% if access_list_to_ea_point.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(access_list_to_ea_point.errors.count, "error") %> prohibited this access_list_to_ea_point from being saved:</h2>
+        <ul>
+          <% access_list_to_ea_point.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+
+<div class="form-row">
+
+<div class="col">
+  <div class="field">
+    File Name:
+    <%= form.text_field :al_file_name, id: :access_list_to_ea_point_al_file_name, class: "form-control" %>
+  </div>
+</div>
+
+<div class="col">
+   <div class="field">
+    EAP ID:
+        <%= form.select(:al_eap_id, EaPoint.all.collect { |p| [ p.eap_id, p.id ] }, {:include_blank => true, :required=>true}, {:class => 'form-control'}) %>
+  </div>
+</div>
+
+</div>
+
+<br>
+  
+<div class="form-row">
+
+          <div class="col form-control">
+            Attachment <strong>(PDF ONLY)</strong>:<br>
+            <%= form.file_field :ea_pproof, multiple: false %>
+
+            <p>
+              <% if @access_list_to_ea_point.ea_pproof? %>
+              <%= image_tag(@access_list_to_ea_point.ea_pproof_url, :class => "photoedit") %>
+              <br>
+              <%= form.check_box :remove_ea_pproof %> Remove Attachment
+
+              <% end %>
+
+            </p>
+          </div>
+
+        </div>
+<br>
+  <div class="form-row text-center">
+        <div class="col">
+    <%= form.submit "Add File", class: "btn-taco-lg"%>
+  </div>
+</div>
+
+
+<% end %>
+
+</div>
+</body>

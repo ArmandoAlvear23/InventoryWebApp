@@ -1,0 +1,313 @@
+    <% if notice != nil %>
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+      <%= notice %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <% end %>
+
+<div class="px-3 py-3 pt-md pb-md mx-auto">
+  <h1 class="h2">CIP-002</h1>
+  <div class="divider"></div>
+</div>
+
+<div class="card-deck mb-3 text-center">
+  <div class="card mb-4 box-shadow">
+    <div class="card-header">
+      <h4 class="my-0 font-weight-normal"><a href="/bes_assets">BES Assets</a></h4>
+    </div>
+    <div class="card-body" style="position: relative; max-height: calc(100vh - 400px); overflow: auto">
+
+      <div class="list-group list-group-flush">
+
+        <a href="/bes_assets?utf8=%E2%9C%93&filterrific%5Bsearch_query%5D=&filterrific%5Bwith_asset_type%5D=Control+Center+(CC)&filterrific%5Bwith_comm_at%5D=&filterrific%5Bsorted_by%5D=created_at_asc&filterrific%5Bwith_high%5D=0&filterrific%5Bwith_medium%5D=0&filterrific%5Bwith_low%5D=0" class="list-group-item list-group-item-action"><strong>Control Centers (CC)</strong></a>
+
+        <% @bes_assets.each do |bes_asset| %>
+        <% if bes_asset.asset_type == "Control Center (CC)" %>
+        <div class="list-group-item list-group-item-action"> <%= link_to bes_asset.asset_id, bes_asset %> </div>
+        <% end %>
+        <% end %>
+
+        <a href="/bes_assets?utf8=%E2%9C%93&filterrific%5Bsearch_query%5D=&filterrific%5Bwith_asset_type%5D=Transmission+Substation+and+Switchyard+(TF)&filterrific%5Bwith_comm_at%5D=&filterrific%5Bsorted_by%5D=created_at_asc&filterrific%5Bwith_high%5D=0&filterrific%5Bwith_medium%5D=0&filterrific%5Bwith_low%5D=0" class="list-group-item list-group-item-action"><strong>Transmission Substations and Switchyards (TF)</strong></a>
+
+        <% @bes_assets.each do |bes_asset| %>
+        <% if bes_asset.asset_type == "Transmission Substation and Switchyard (TF)" %>
+        <div class="list-group-item list-group-item-action"> <%= link_to bes_asset.asset_id, bes_asset %> </div>
+        <% end %>
+        <% end %>
+
+        <a href="/bes_assets?utf8=%E2%9C%93&filterrific%5Bsearch_query%5D=&filterrific%5Bwith_asset_type%5D=Generation+Resource+(G)&filterrific%5Bwith_comm_at%5D=&filterrific%5Bsorted_by%5D=created_at_asc&filterrific%5Bwith_high%5D=0&filterrific%5Bwith_medium%5D=0&filterrific%5Bwith_low%5D=0" class="list-group-item list-group-item-action"><strong>Generation Resources (G)</strong></a>
+
+        <% @bes_assets.each do |bes_asset| %>
+        <% if bes_asset.asset_type == "Generation Resource (G)" %>
+        <div class="list-group-item list-group-item-action"> <%= link_to bes_asset.asset_id, bes_asset %> </div>
+        <% end %>
+        <% end %>
+
+        <a href="/bes_assets?utf8=%E2%9C%93&filterrific%5Bsearch_query%5D=&filterrific%5Bwith_asset_type%5D=Additional+Asset+(AA)&filterrific%5Bwith_comm_at%5D=&filterrific%5Bsorted_by%5D=created_at_asc&filterrific%5Bwith_high%5D=0&filterrific%5Bwith_medium%5D=0&filterrific%5Bwith_low%5D=0" class="list-group-item list-group-item-action"><strong>Additional Assets (AA)</strong></a>
+
+        <% @bes_assets.each do |bes_asset| %>
+        <% if bes_asset.asset_type == "Additional Asset (AA)" %>
+        <div class="list-group-item list-group-item-action"> <%= link_to bes_asset.asset_id, bes_asset %> </div>
+        <% end %>
+        <% end %>
+
+        <a href="/bes_assets?utf8=%E2%9C%93&filterrific%5Bsearch_query%5D=&filterrific%5Bwith_asset_type%5D=Distribution+Resource+(DP)&filterrific%5Bwith_comm_at%5D=&filterrific%5Bsorted_by%5D=created_at_asc&filterrific%5Bwith_high%5D=0&filterrific%5Bwith_medium%5D=0&filterrific%5Bwith_low%5D=0" class="list-group-item list-group-item-action"><strong>Distribution Resources (DP)</strong></a>
+
+        <% @bes_assets.each do |bes_asset| %>
+        <% if bes_asset.asset_type == "Distribution Resource (DP)" %>
+        <div class="list-group-item list-group-item-action"> <%= link_to bes_asset.asset_id, bes_asset %> </div>
+        <% end %>
+        <% end %>
+
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <%= link_to "Add BES Asset", new_bes_asset_path, class: "btn-taco" %>
+    </div>
+  </div>
+
+  <div class="card mb-4 box-shadow">
+    <div class="card-header">
+      <h4 class="my-0 font-weight-normal"><a href="/bes_cyber_systems">Cyber Systems</a></h4>
+    </div>
+    <div class="card-body" style="position: relative; max-height: calc(100vh - 400px); overflow: auto">
+
+
+
+      <div class="list-group list-group-flush">
+
+        <a href="/bes_cyber_systems?utf8=%E2%9C%93&filterrific%5Bsearch_query%5D=&filterrific%5Bsorted_by%5D=created_at_asc&filterrific%5Bwith_bes_asset%5D=&filterrific%5Bbes_system_yn%5D=Yes&filterrific%5Bimpact_rating%5D=" class="list-group-item list-group-item-action"><strong>BES Systems</strong></a>
+
+        <% @bes_cyber_systems.each do |b| %>
+
+        <% count = 0 %>
+
+        <% if b.BES_system == "Yes" %>
+
+        <% @bes_cyber_assets.each do |bes_cyber_asset| %>
+
+        <% if bes_cyber_asset.bcs_id == b.BES_cyber_system %>
+        <% count = count + 1 %>
+        <% end %> 
+
+        <% end %>
+        <div class="list-group-item list-group-item-action"><%= link_to b.BES_cyber_system, b %> (<%= count %>)</div>
+
+        <% end %>
+        <% end %>
+
+        <a href="/bes_cyber_systems?utf8=%E2%9C%93&filterrific%5Bsearch_query%5D=&filterrific%5Bsorted_by%5D=created_at_asc&filterrific%5Bwith_bes_asset%5D=&filterrific%5Bbes_system_yn%5D=No&filterrific%5Bimpact_rating%5D=" class="list-group-item list-group-item-action"><strong>Non BES Systems</strong></a>
+
+        <% @bes_cyber_systems.each do |b| %>
+
+        <% count = 0 %>
+
+        <% if b.BES_system == "No" %>
+
+        <% @bes_cyber_assets.each do |bes_cyber_asset| %>
+
+        <% if bes_cyber_asset.bcs_id == b.BES_cyber_system %>
+        <% count = count + 1 %>
+        <% end %> 
+
+        <% end %>
+        <div class="list-group-item list-group-item-action"><%= link_to b.BES_cyber_system, b %> (<%= count %>)</div>
+
+
+        <% end %>
+        <% end %>
+
+      </div>
+
+    </div>
+    <div class="card-footer">
+      <%= link_to "Add Cyber System", new_bes_cyber_system_path, class: "btn-taco" %>
+    </div>
+  </div>
+
+  <div class="card mb-4 box-shadow">
+    <div class="card-header">
+      <h4 class="my-0 font-weight-normal"><a href="/bes_cyber_assets">Cyber Assets</a></h4>
+    </div>
+    <div class="card-body" style="position: relative; max-height: calc(100vh - 400px); overflow: auto">
+
+      <div class="list-group list-group-flush">
+
+        <div class="list-group-item list-group-item-action"><strong>Control Centers (CC)</strong></div>
+
+        <% @bes_assets.each do |bes_asset| %>
+
+        <% count = 0 %>
+
+        <% if bes_asset.asset_type == "Control Center (CC)" %>
+
+        <% @bes_cyber_assets.each do |bes_cyber_asset| %>
+
+        <% if bes_asset.asset_id == bes_cyber_asset.asset_id %>
+        <% count = count + 1 %>
+        <% end %> 
+
+        <% end %>
+        <div class="list-group-item list-group-item-action"><a href="/bes_cyber_assets?utf8=%E2%9C%93&filterrific%5Bsearch_query%5D=&filterrific%5Bsorted_by%5D=created_at_asc&filterrific%5Bwith_asset_id%5D=<%= bes_asset.asset_id %>&filterrific%5Bwith_impact_rating%5D=&filterrific%5Bwith_ca_class%5D=&filterrific%5Bwith_ca_function%5D=&filterrific%5Bwith_os_firmware%5D=&filterrific%5Bwith_logging%5D="><%= bes_asset.asset_id %>&nbsp</a>(<%= count %>)</div>
+
+
+        <% end %>
+        <% end %>
+
+        <div class="list-group-item list-group-item-action"><strong>Transmission Substations and Switchyards (TF)</strong></div>
+
+        <% @bes_assets.each do |bes_asset| %>
+
+        <% count = 0 %>
+
+        <% if bes_asset.asset_type == "Transmission Substation and Switchyard (TF)" %>
+
+        <% @bes_cyber_assets.each do |bes_cyber_asset| %>
+
+        <% if bes_asset.asset_id == bes_cyber_asset.asset_id %>
+        <% count = count + 1 %>
+        <% end %> 
+
+        <% end %>
+        <div class="list-group-item list-group-item-action"><a href="/bes_cyber_assets?utf8=%E2%9C%93&filterrific%5Bsearch_query%5D=&filterrific%5Bsorted_by%5D=created_at_asc&filterrific%5Bwith_asset_id%5D=<%= bes_asset.asset_id %>&filterrific%5Bwith_impact_rating%5D=&filterrific%5Bwith_ca_class%5D=&filterrific%5Bwith_ca_function%5D=&filterrific%5Bwith_os_firmware%5D=&filterrific%5Bwith_logging%5D="><%= bes_asset.asset_id %>&nbsp</a>(<%= count %>)</div>
+
+        <% end %>
+        <% end %>
+
+        <div class="list-group-item list-group-item-action"><strong>Generation Resources (G)</strong></div>
+
+        <% @bes_assets.each do |bes_asset| %>
+
+        <% count = 0 %>
+
+        <% if bes_asset.asset_type == "Generation Resource (G)" %>
+
+        <% @bes_cyber_assets.each do |bes_cyber_asset| %>
+
+        <% if bes_asset.asset_id == bes_cyber_asset.asset_id %>
+        <% count = count + 1 %>
+        <% end %> 
+
+        <% end %>
+        <div class="list-group-item list-group-item-action"><a href="/bes_cyber_assets?utf8=%E2%9C%93&filterrific%5Bsearch_query%5D=&filterrific%5Bsorted_by%5D=created_at_asc&filterrific%5Bwith_asset_id%5D=<%= bes_asset.asset_id %>&filterrific%5Bwith_impact_rating%5D=&filterrific%5Bwith_ca_class%5D=&filterrific%5Bwith_ca_function%5D=&filterrific%5Bwith_os_firmware%5D=&filterrific%5Bwith_logging%5D="><%= bes_asset.asset_id %>&nbsp</a>(<%= count %>)</div>
+
+        <% end %>
+        <% end %>
+
+        <div class="list-group-item list-group-item-action"><strong>Additional Assets (AA)</strong></div>
+
+        <% @bes_assets.each do |bes_asset| %>
+
+        <% count = 0 %>
+
+        <% if bes_asset.asset_type == "Additional Asset (AA)" %>
+
+        <% @bes_cyber_assets.each do |bes_cyber_asset| %>
+
+        <% if bes_asset.asset_id == bes_cyber_asset.asset_id %>
+        <% count = count + 1 %>
+        <% end %> 
+
+        <% end %>
+        <div class="list-group-item list-group-item-action"><a href="/bes_cyber_assets?utf8=%E2%9C%93&filterrific%5Bsearch_query%5D=&filterrific%5Bsorted_by%5D=created_at_asc&filterrific%5Bwith_asset_id%5D=<%= bes_asset.asset_id %>&filterrific%5Bwith_impact_rating%5D=&filterrific%5Bwith_ca_class%5D=&filterrific%5Bwith_ca_function%5D=&filterrific%5Bwith_os_firmware%5D=&filterrific%5Bwith_logging%5D="><%= bes_asset.asset_id %>&nbsp</a>(<%= count %>)</div>
+
+        <% end %>
+        <% end %>
+
+        <div class="list-group-item list-group-item-action"><strong>Distribution Resources (DP)</strong></div>
+
+        <% @bes_assets.each do |bes_asset| %>
+
+        <% count = 0 %>
+
+        <% if bes_asset.asset_type == "Distribution Resource (DP)" %>
+
+        <% @bes_cyber_assets.each do |bes_cyber_asset| %>
+
+        <% if bes_asset.asset_id == bes_cyber_asset.asset_id %>
+        <% count = count + 1 %>
+        <% end %> 
+
+        <% end %>
+        <div class="list-group-item list-group-item-action"><a href="/bes_cyber_assets?utf8=%E2%9C%93&filterrific%5Bsearch_query%5D=&filterrific%5Bsorted_by%5D=created_at_asc&filterrific%5Bwith_asset_id%5D=<%= bes_asset.asset_id %>&filterrific%5Bwith_impact_rating%5D=&filterrific%5Bwith_ca_class%5D=&filterrific%5Bwith_ca_function%5D=&filterrific%5Bwith_os_firmware%5D=&filterrific%5Bwith_logging%5D="><%= bes_asset.asset_id %>&nbsp</a>(<%= count %>)</div>
+
+        <% end %>
+        <% end %>
+
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <%= link_to "Add Cyber Asset", new_bes_cyber_asset_path, class: "btn-taco" %>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+<div class=" px-3 py-3 pt-md pb-md mx-auto">
+  <h1 class="h2">CIP-005-5 & CIP-006-6</h1>
+  <div class="divider"></div>
+</div>
+
+
+<div class="card-deck mb-3 text-center">
+
+  <div class="card mb-4 box-shadow">
+    <div class="card-header">
+      <h4 class="my-0 font-weight-normal"><a href="/es_perimeters">Electronic Security Perimeters (ESPs)</a></h4>
+    </div>
+    <div class="card-body" style="position: relative; max-height: calc(100vh - 400px); overflow: auto">
+      <div class="list-group list-group-flush">
+        <% @es_perimeters.each do |es_perimeter| %>
+        <div class="list-group-item list-group-item-action"> <%= link_to es_perimeter.esp_id, es_perimeter %> </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="card-footer">
+      <%= link_to "Add ESP", new_es_perimeter_path, class: "btn-taco" %>
+    </div>
+  </div>
+
+
+  <div class="card mb-4 box-shadow">
+    <div class="card-header">
+      <h4 class="my-0 font-weight-normal"><a href="/ea_points">Electronic Access Points (EAPs)</a></h4>
+    </div>
+    <div class="card-body" style="position: relative; max-height: calc(100vh - 400px); overflow: auto">
+      <div class="list-group list-group-flush">
+        <% @ea_points.each do |ea_point| %>
+        <div class="list-group-item list-group-item-action"><%= link_to ea_point.eap_id, ea_point %> </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="card-footer">
+      <%= link_to "Add EAP", new_ea_point_path, class: "btn-taco" %>
+    </div>
+  </div>
+
+
+  <div class="card mb-4 box-shadow">
+    <div class="card-header">
+      <h4 class="my-0 font-weight-normal"><a href="/ps_perimeters">Physical Security Perimeters (PSPs)</a></h4>
+    </div>
+    <div class="card-body" style="position: relative; max-height: calc(100vh - 400px); overflow: auto">
+      <div class="list-group list-group-flush">
+        <% @ps_perimeters.each do |ps_perimeter| %>
+        <div class="list-group-item list-group-item-action"><%= link_to ps_perimeter.psp_id, ps_perimeter %> </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="card-footer">
+      <%= link_to "Add PSP", new_ps_perimeter_path, class: "btn-taco" %>
+    </div>
+  </div>
+
+
+</div>

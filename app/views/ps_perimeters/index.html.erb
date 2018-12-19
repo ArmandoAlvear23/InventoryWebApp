@@ -1,0 +1,57 @@
+<body>
+  <div class="container">
+
+    <% if notice != nil %>
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+      <%= notice %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <% end %>
+
+
+    <%= form_for_filterrific @fpsp do |f| %>
+
+    <div class="filter-taco">
+
+      <div class="form-row align-items-center">
+        <div class="col">
+          Search:
+          <%= f.text_field(:search_query, class: 'filterrific-periodically-observed form-control') %>
+        </div>
+
+        <div class="col">
+          Sorted By:
+          <%= f.select(:sorted_by, @fpsp.select_options[:sorted_by], {}, {:class =>"form-control"}) %>
+        </div>
+
+      </div>
+
+      <div class="form-row align-items-center">
+
+        <div class="col">
+          Location:
+          <%= f.select(:with_location, @bes_assets.all.collect { |p| [ p.location, p.location ] }, { :include_blank => '- Any -'}, {:class => 'form-control'}) %> 
+        </div>
+
+        <div class="col">
+          Asset ID:
+          <%= f.select(:with_asset_id, @bes_assets.all.collect { |p| [ p.asset_id, p.asset_id ] }, { :include_blank => '- Any -'}, {:class => 'form-control'}) %> 
+        </div>
+      </div>
+
+      <br>
+
+      <div class="form-row align-items-center">
+        <div class="col"></div>
+        <div class="col-md-auto"><%= link_to('Export', ps_perimeters_path(:format => :csv), :class=>"btn-taco") %></div>
+        <div class="col-md-auto"><%= link_to('Reset Filters', reset_filterrific_url, :class=>"btn-taco") %></div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+  <%= render(partial: 'ps_perimeters/list', locals: { ps_perimeters: @ps_perimeters } ) %>
+
+</body>

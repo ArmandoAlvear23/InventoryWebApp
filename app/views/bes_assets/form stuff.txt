@@ -1,0 +1,279 @@
+        <%= page_entries_info bes_assets # provided by will_paginate %>
+
+
+<%= will_paginate bes_assets # provided by will_paginate %>
+
+
+
+
+
+
+
+
+
+
+
+
+    <table>
+        <thead>
+          <tr>
+            <th>Asset</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Commission</th>
+            <th>Decommission</th>
+            <th>High</th>
+            <th>Medium</th>
+            <th>Low</th>
+            <th>ERC</th>
+            <th>Dial-Up</th>
+            <th>Region Operations</th>
+            <th>Register Function</th>
+<!--       <div id="extra_label">
+        <th>Cc1</th>
+        <th>Cc2</th>
+        <th>Cc3</th>
+        <th>Cc4</th>
+        <th>Cc5</th>
+        <th>Cc6</th>
+        <th>Cc7</th>
+        <th>Cc8</th>
+        <th>Tf1</th>
+        <th>Tf2</th>
+        <th>Tf3</th>
+        <th>Tf4</th>
+        <th>Tf5</th>
+        <th>Tf6</th>
+        <th>Tf7</th>
+        <th>Tf8</th>
+        <th>G1</th>
+        <th>G2</th>
+        <th>G3</th>
+        <th>G4</th>
+        <th>G5</th>
+        <th>Aa1</th>
+        <th>Aa2</th>
+        <th>Aa3</th>
+        <th>Dp1</th>
+      </div> -->
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bes_assets.each do |bes_asset| %>
+    <tr>
+      <td><%= bes_asset.asset_id %></td>
+      <td><%= bes_asset.asset_type %></td>
+      <td><%= bes_asset.description %></td>
+      <td><%= bes_asset.commission %></td>
+      <td><%= bes_asset.decommission %></td>
+      <td><%= bes_asset.high_impact %></td>
+      <td><%= bes_asset.medium_impact %></td>
+      <td><%= bes_asset.low_impact %></td>
+      <td><%= bes_asset.erc %></td>
+      <td><%= bes_asset.dial_up %></td>
+      <td><%= bes_asset.region_op %></td>
+      <td><%= bes_asset.register_func %></td>
+<!--       <div id="extra_data">
+        <td><%= bes_asset.cc1 %></td>
+        <td><%= bes_asset.cc2 %></td>
+        <td><%= bes_asset.cc3 %></td>
+        <td><%= bes_asset.cc4 %></td>
+        <td><%= bes_asset.cc5 %></td>
+        <td><%= bes_asset.cc6 %></td>
+        <td><%= bes_asset.cc7 %></td>
+        <td><%= bes_asset.cc8 %></td>
+        <td><%= bes_asset.tf1 %></td>
+        <td><%= bes_asset.tf2 %></td>
+        <td><%= bes_asset.tf3 %></td>
+        <td><%= bes_asset.tf4 %></td>
+        <td><%= bes_asset.tf5 %></td>
+        <td><%= bes_asset.tf6 %></td>
+        <td><%= bes_asset.tf7 %></td>
+        <td><%= bes_asset.tf8 %></td>
+        <td><%= bes_asset.g1 %></td>
+        <td><%= bes_asset.g2 %></td>
+        <td><%= bes_asset.g3 %></td>
+        <td><%= bes_asset.g4 %></td>
+        <td><%= bes_asset.g5 %></td>
+        <td><%= bes_asset.aa1 %></td>
+        <td><%= bes_asset.aa2 %></td>
+        <td><%= bes_asset.aa3 %></td>
+        <td><%= bes_asset.dp1 %></td>
+      </div> -->
+
+      <td><%= link_to 'Show', bes_asset, class: "btn btn-outline-secondary" %></td>
+      <td><%= link_to 'Edit', edit_bes_asset_path(bes_asset), class: "btn btn-outline-secondary"%></td>     
+      <td><%= button_to "Delete", bes_asset, :method=>:delete, :class=>:destroy, :confirm => "Are you sure?" ,class: "btn btn-outline-secondary"%></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
+
+
+<!--       <td><%= link_to 'Destroy', bes_asset, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+ --> 
+
+
+
+
+
+
+<%= form.text_field :asset_type, id: :bes_asset_asset_type, class: "form-control" %>
+
+
+
+
+form stuff
+
+----------------------------
+high medium and low
+
+ <div class="field">
+    <%= form.label :high_impact %>
+    <%= form.radio_button :high_impact, 'yes', id: :bes_asset_high_impact %> Yes
+    <%= form.radio_button :high_impact, 'no', id: :bes_asset_high_impact %> No
+  </div>
+
+  <div class="field">
+    <%= form.label :medium_impact %>
+    <%= form.text_field :medium_impact, id: :bes_asset_medium_impact %>
+  </div>
+
+  <div class="field">
+    <%= form.label :low_impact %>
+    <%= form.text_field :low_impact, id: :bes_asset_low_impact %>
+  </div>
+
+
+  ----------------------------
+
+  <div class="field">
+    <%= form.label :cc1 %>
+    <%= form.text_field :cc1, id: :bes_asset_cc1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cc2 %>
+    <%= form.text_field :cc2, id: :bes_asset_cc2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cc3 %>
+    <%= form.text_field :cc3, id: :bes_asset_cc3 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cc4 %>
+    <%= form.text_field :cc4, id: :bes_asset_cc4 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cc5 %>
+    <%= form.text_field :cc5, id: :bes_asset_cc5 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cc6 %>
+    <%= form.text_field :cc6, id: :bes_asset_cc6 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cc7 %>
+    <%= form.text_field :cc7, id: :bes_asset_cc7 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cc8 %>
+    <%= form.text_field :cc8, id: :bes_asset_cc8 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tf1 %>
+    <%= form.text_field :tf1, id: :bes_asset_tf1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tf2 %>
+    <%= form.text_field :tf2, id: :bes_asset_tf2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tf3 %>
+    <%= form.text_field :tf3, id: :bes_asset_tf3 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tf4 %>
+    <%= form.text_field :tf4, id: :bes_asset_tf4 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tf5 %>
+    <%= form.text_field :tf5, id: :bes_asset_tf5 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tf6 %>
+    <%= form.text_field :tf6, id: :bes_asset_tf6 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tf7 %>
+    <%= form.text_field :tf7, id: :bes_asset_tf7 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tf8 %>
+    <%= form.text_field :tf8, id: :bes_asset_tf8 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :g1 %>
+    <%= form.text_field :g1, id: :bes_asset_g1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :g2 %>
+    <%= form.text_field :g2, id: :bes_asset_g2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :g3 %>
+    <%= form.text_field :g3, id: :bes_asset_g3 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :g4 %>
+    <%= form.text_field :g4, id: :bes_asset_g4 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :g5 %>
+    <%= form.text_field :g5, id: :bes_asset_g5 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :aa1 %>
+    <%= form.text_field :aa1, id: :bes_asset_aa1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :aa2 %>
+    <%= form.text_field :aa2, id: :bes_asset_aa2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :aa3 %>
+    <%= form.text_field :aa3, id: :bes_asset_aa3 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dp1 %>
+    <%= form.text_field :dp1, id: :bes_asset_dp1 %>
+  </div>

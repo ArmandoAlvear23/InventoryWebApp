@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  esp_id: MyString
+  esp_description: MyString
+  esp_network: MyString
+  esp_conn: MyString
+  esp_remote: MyString
+  esp_eacms: MyString
+  esp_topology: MyString
+
+two:
+  esp_id: MyString
+  esp_description: MyString
+  esp_network: MyString
+  esp_conn: MyString
+  esp_remote: MyString
+  esp_eacms: MyString
+  esp_topology: MyString

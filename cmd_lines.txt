@@ -1,0 +1,305 @@
+CREATE THE BES ASSETS TABLE
+
+rails generate scaffold BESAssets asset_id:string{255} asset_type:string{255} description:string{255} commission:date decommission:date high_impact:string{255} medium_impact:string{255} low_impact:string{255} erc:string{255} dial_up:string{255} region_op:string{255} register_func:string{255} cc1:string{255} cc2:string{255} cc3:string{255} cc4:string{255} cc5:string{255} cc6:string{255} cc7:string{255} cc8:string{255} tf1:string{255} tf2:string{255} tf3:string{255} tf4:string{255} tf5:string{255} tf6:string{255} tf7:string{255} tf8:string{255} g1:string{255} g2:string{255} g3:string{255} g4:string{255} g5:string{255} aa1:string{255} aa2:string{255} aa3:string{255} dp1:string{255}
+
+CREATE THE BES CYBER ASSETS TABLE
+rails generate scaffold BESCyberAssets ca_id:string{255} ca_classification:string{255} bcs_id:string{255} impact_rating:string{255} asset_id:string{255} protocol:string{255} ip_address:string{255} esp_identifier:string{255} ca_dial_up:string{255} cip_005:string{255} ca_ira:string{255} ca_psp:string{255} ca_bcs_login:string{255} bcs_login:string{255} log_collector:string{255} activation_date:date deactivation_date:date ca_function:string{255} ca_other:string{255} ca_vendor:string{255} ca_model:string{255} os_firmware:string{255} os_other:string{255} external_conn:string{255} system_logging:string{255} alerting:string{255} reg_entity_ncr:string{255} region:string{255} function:string{255}
+
+
+CREATE THE BES CYBER SYSTEMS TABLE
+rails generate scaffold BESCyberSystems BES_cyber_system:string{255} BES_asset_BCS:string{255} BES_system:string{255} impact_rating_BCS:string{255} justification:string{255}
+
+CREATE ELECTRONIC SECURITY PERIMETERS
+rails generate scaffold es_perimeter esp_id:string{255} esp_description:string{255} esp_network:string{255} esp_conn:string{255} esp_remote:string{255} esp_eacms:string{255} esp_topology:string{255}
+
+CREATE ELECTRONIC ACCESS POINTS
+rails generate scaffold ea_point eap_id:string{255} eap_interface:string{255} eap_ip:string{255} eap_ca_eacms:string{255} eap_esp_id:string{255} eap_access_list:string{255}
+
+CREATE PHYSICAL SECURITY PERIMETER
+rails generate scaffold ps_perimeter psp_id:string{255} psp_description:string{255} psp_location:string{255} psp_asset_id:string{255} psp_diagrams:string{255}
+
+
+CREATE NETWORK TOPOLOGY ESP
+rails generate scaffold network_top_to_es_perimeter nt_file_name:string{255} nt_esp_id:string{255}
+
+CREATE ACCESS LIST EAP
+rails generate scaffold access_list_to_ea_point al_file_name:string{255} al_eap_id:string{255}  
+
+CREATE PSP DIAGRAMS 
+rails generate scaffold psp_diagrams_to_ps_perimeter psp_dia_file_name:string{225} psp_dia_psp_id:string{255}
+
+rails g migration add_proof_to_access_list_to_ea_point ea_pproof:string
+
+rails g migration add_proof_to_psp_diagrams_to_ps_perimeter ps_pproof:string
+
+
+
+
+
+-TABLE-
+BES_cyber_system
+BES_asset_BCS
+BES_system
+impact_rating_BCS
+justification
+
+BES Cyber Assets
+Filterrific
+
+Search:
+Cyber Asset 								ca_id
+Cyber Asset Classification 					ca_classification
+BES Cyber System 							bcs_id
+Asset ID 									asset_id
+IP Address 									ip_address
+ESP Identifier 								esp_identifier		
+PSP Identifier 								ca_psp
+Date of Activation 							activation_date
+Date of Deactivation 						deactivation_date			
+Cyber Asset Function 						ca_function
+If other 									ca_other
+Cyber Asset Vendor 							ca_vendor
+Cyber Asset Model 							ca_model
+Operating System or Firmware Type 			os_firmware
+if Other 									os_other
+Responsible Registered Entity and NCR 		reg_entity_ncr
+Region 										region
+Function 									function
+
+Filter By:
+Asset ID
+	Drop down of all BES Assets
+
+Impact Rating
+	High
+	Medium
+	Low
+
+Cyber Asset Classification
+	Drop down of all categories
+	BCA
+	EACMS
+	PACS
+	PCA
+	CA in BCS
+
+Cyber Asset Function
+	Drop down of all categories (LONG)
+
+Operating System or Firmware Type
+	Drop down of all categories (LONG)
+
+Logging
+	Drop down of all categories
+	CA
+	BCS
+	CA and BCS
+
+Sort By:
+Cyber Asset ID (ascending-descending)							done
+Cyber Asset Function (ascending-descending)						done
+Region (ascending-descending)									
+Cyber Asset Vendor(ascending-descending)						done
+Cyber Asset Model(ascending-descending)							done
+Operating System or Firmware Type (ascending-descending)		done
+Date of Activation (ascending-descending)						done
+Date of Deactivation(ascending-descending)						done
+
+Reset Button
+
+
+
+
+7/16/2018 WORK (2 weeks)
+
+BES Cyber Systems
+-TABLE-
+BES_cyber_system
+BES_asset_BCS
+BES_system
+impact_rating_BCS
+justification
+q1
+q2
+q3
+q4
+q5
+q6
+q7
+q8
+q9
+
+app>db>migrate>create_bes_cyber_system
+app>controllers>bes_cyber_systems_controller.rb (add on permit)
+
+
+~~BES Cyber Systems FORM~~
+BES Cyber System		NEW TEXT: (input text field)
+BES Asset				LINK TO: BES Assets (drop down)
+BROS Questions			RADIO BUTTONS: (Yes, No)
+Justification			NEW TEXT: (input text field)
+
+--Hidden--
+BES?					YES: if one ore more of the BROs questions is YES
+						NO: if all of the BROs questions are NO
+Impact Rating			If BES? is YES
+							inherit impact rating from BES Asset
+						If BES? is NO
+							N/A
+Created At					
+Updated At
+
+~~BES Cyber Systems SHOW Filters~~
+Search (6):
+	BES Cyber System
+	BES Asset
+	Justification
+	Impact Rating
+	Created at
+	Updated At
+
+Filter By (3):
+	##BES Cyber System
+		List of all BES Cyber Systems in the database
+	BES Asset
+		List of all BES Cyber Assets in the database
+	BES?
+		Yes
+		No
+	Impact Rating
+		High
+		Medium
+		Low
+		N/A
+
+Sort By (8):
+	BES Cyber System asc
+	BES Cyber System desc
+	BES Asset asc
+	BES Asset desc
+	Created At asc
+	Created At desc
+	Updated At asc
+	Updated At desc
+
+Buttons (2):
+	EXPORT
+	RESET FILTERS
+
+	
+
+
+
+~~BES Cyber Assets FORM~~
+Add:
+BES Cyber Systems		LINK TO: BES Cyber Systems (drop down)
+
+Reconfigure:
+Impact Rating			INHERIT: Impact Rating from BES Cyber System
+
+
+~~BES Cyber Assets SHOW Filters~~
+ADD: 
+	Search:
+		BES Cyber Systems
+
+	Filter By:
+		BES Cyber Systems (Drop down of all BES Cyber Systems)
+		Rating: "N/A"
+
+	Sort By:
+		BES Cyber Systems asc
+		BES Cyber Systems desc
+
+DELETE: 
+	Filter By:
+		Logging
+
+
+
+7/17/18
+
+TODO:
+Work on BES Cyber System Form page
+	DONE 	Work on script to produce BES_cyber_system output (yes, no)
+				YES: if one or more of the BROs questions (q1-q9) is Yes
+				NO: if ALL of the BROs questions are NO
+	DONE	Work on script to produce impact_rating_BCS (high, medium, low, N/A)
+				If BES_system is YES
+					inherit impact rating from BES Asset
+				Else if BES_system is NO
+					N/A
+	Add Home button under Add System button
+	Add Show Systems button under Add System button
+	Fix layout and placement of form questions
+
+Work on BES Cyber System individual Show page
+	Fix layout and placement of the data
+	Add Edit System button at the bottom
+	Add Back to Systems button at the bottom
+
+Work on BES Cyber System all records Show Page 	DONE
+	add filters bar at the top
+	fix layout of data
+	
+Work on BES Cyber System column in Home Page DONE
+	Add BES System break inside column
+		Add all BES Systems under this break
+	Add Non-BES System break inside column
+		Add all Non-BES Systems under this break
+	Link each system to its own individual Show page
+		
+Work on BES Cyber Assets SHOW page
+	Add:
+		Search:
+			BES Cyber Systems
+
+		Sort By:
+			BES Cyber Systems asc
+			BES Cyber Systems desc
+
+		Filter By:
+			Impact Rating: add "N/A"
+	Delete:
+		Filter By:
+			Logging
+
+Work on BES Cyber Assets FORM page
+	Add:
+		BES Cyber System		LINK TO: BES Cyber Systems (drop down)
+
+	Reconfigure:
+		Impact Rating			INHERIT: Impact Rating from BES Cyber Systems
+
+
+7/18/18
+
+BES Cyber Assets
+
+cip_005 is "Yes" 
+	if 	ca_classification is "BCA" or "PCA" or "CA in BCS" AND 
+		ca_dial_up is "TRUE"
+
+cip_005 is "No"
+	if 	ca_classification is "EACMS" or "PACS" OR
+		ca_dial_up is ""
+
+
+
+--Make User--
+cmd
+rails console
+	User.create!(:email=>'a@a.com', :password=>'pub123', :admin=>true)
+
+-delete all data-
+rake db:schema:load
+
+network_topology		access_list 		psp_diagrams
+id 						id 					id
+created_at				created_at			created_at
+updated_at				updated_at			updated_at
+
+file_name				file_name 			file_name
+nt_esp_id 				al_eap_id 			psp_dia_id
+
+

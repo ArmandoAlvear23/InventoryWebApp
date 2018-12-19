@@ -1,0 +1,5 @@
+<%# app/views/students/index.js.erb %>
+<% js = escape_javascript(
+  render(partial: 'ps_perimeters/list', locals: { ps_perimeters: @ps_perimeters })
+) %>
+$("#filterrific_results").html("<%= js %>");

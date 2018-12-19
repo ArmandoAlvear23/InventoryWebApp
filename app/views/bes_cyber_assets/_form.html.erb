@@ -1,0 +1,364 @@
+
+  <div class="container">
+    <%= form_with(model: bes_cyber_asset, local: true) do |form| %>
+    <% if bes_cyber_asset.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bes_cyber_asset.errors.count, "error") %> prohibited this bes_cyber_asset from being saved:</h2>
+      <ul>
+        <% bes_cyber_asset.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+    <div class="">
+
+      <div class="form-row">
+
+        <div class="col form-control">
+          <div class="field">
+            Cyber Asset ID
+            <%= form.text_field :ca_id, id: :bes_cyber_asset_ca_id, class: "form-control", required: 'true'%>
+          </div>
+          
+          <div class="field">
+            Cyber Asset Classification<br>
+            <%= form.select(:ca_classification, [["CA", "CA"],["BCA", "BCA"],["EACMS", "EACMS"],["PACS","PACS"],["PCA","PCA"],["CA in BCS","CA in BCS"]], {required: 'true', :include_blank => true}, {:class => 'form-control'}) %>
+          </div>
+
+          <div class="field">
+            Cyber System ID
+            <%= form.select(:bcs_id, @bes_cyber_systems.all.collect { |p| [ p.BES_cyber_system, p.BES_cyber_system ] }, {:include_blank => true}, {:class => 'form-control'}) %>
+          </div>
+
+          <div class="field">
+            Asset ID
+            <%= form.select(:asset_id, @bes_assets.all.collect { |p| [ p.asset_id, p.asset_id ] }, {:include_blank => true}, {:class => 'form-control'}) %>
+          </div>
+
+        </div>
+
+        <br>
+        <div class="md-col-auto"></div>
+        <br>
+
+        <div class="col form-control">
+          <div class="field">
+            Connected to a Network via Routable Protocol?<br>
+            <%= form.select(:protocol, [["No", "No"],["Yes", "Yes"]], {}, {:class => 'form-control'}) %>
+          </div>
+
+          <div class="field">
+            IP Address
+            <%= form.text_field :ip_address, id: :bes_cyber_asset_ip_address, class: 'form-control' %>
+          </div>
+
+          <div class="field">
+            ESP Identifier (if any)
+            <%= form.select(:esp_identifier, @es_perimeters.all.collect { |p| [ p.esp_id, p.esp_id ] }, {:include_blank => "N/A"}, {:class => 'form-control'}) %>
+          </div>
+
+          <div class="field">
+            Dial-up?<br>
+            <%= form.select(:ca_dial_up, [["No","False"], ["Yes", "True"]], {}, {:class => 'form-control'}) %>
+          </div>
+
+          <div class="field">
+            Is IRA Enabled?<br>
+            <%= form.select(:ca_ira, [["No", "No"],["Yes","Yes"]], {}, {:class => 'form-control'}) %>
+          </div>
+
+          <div class="field">
+            PSP Identifier
+            <%= form.select(:ca_psp, @ps_perimeters.all.collect { |p| [ p.psp_id, p.psp_id ] }, {:include_blank => "N/A"}, {:class => 'form-control'}) %>
+          </div>
+        </div>
+
+      </div>
+
+      <br>
+
+      <div class="form-row">
+
+        <div class="col form-control">
+
+          <div class="form-row">
+            <div class="col">
+              <div class="field">
+                <br>Is logging performed at the CA or BCS Level?<br>
+                <%= form.select(:ca_bcs_login, [["CA","CA"],["BCS","BCS"],["CA and BCS","CA and BCS"],["None","None"]], {}, {:class => 'form-control'}) %>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="field">
+                If logging is performed at the BCS level, identify the BCS that this CA is a member of where logging occurs.
+                <%= form.select(:bcs_login, @bes_cyber_systems.all.collect { |p| [ p.BES_cyber_system, p.BES_cyber_system ] }, {:include_blank => true}, {:class => 'form-control'}) %>
+
+               
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="field">
+                <br><br>Identify the log collector for the CA or BCS
+                 <%= form.select(:log_collector, @bes_cyber_assets.where("ca_classification == 'EACMS'").collect { |p| [ p.ca_id ] }, {:include_blank => true}, {:class => 'form-control'}) %>
+                
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <br>
+      <div class="form-control">
+        <div class="row ">
+
+          <div class="col">
+            Date of Activation
+            <%= form.text_field :activation_date, class: 'js-datepicker form-control', :id=>'datepicker-comm', :type=>'date' %>
+          </div>
+
+          <div class="col-mx-auto"></div>
+
+          <div class="col">
+            Date of Deactivation
+            <%= form.text_field :deactivation_date, class: 'js-datepicker form-control', :id=>'datepicker-decomm', :type=>'date' %>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <br>
+
+    <div class="form-row">
+
+      <div class="col form-control">
+
+        <div class="field">
+          Cyber Asset Function<br>
+          <%= form.select(:ca_function, [
+            ["Active Directory (AD)", "Active Directory (AD)"],
+            ["Application Server", "Application Server"],
+            ["Appliance","Appliance"],
+            ["Communications Processor","Communications Processor"],
+            ["Computer Networking","Computer Networking"],
+            ["Data Acquisition","Data Acquisition"],
+            ["Data Concentrator","Data Concentrator"],
+            ["Data Diode","Data Diode"],
+            ["Data Interchange","Data Interchange"],
+            ["Data Server","Data Server"],
+            ["Development & Testing","Development & Testing"],
+            ["Diagnostic","Diagnostic"],
+            ["Distributed Control System (DCS)","Distributed Control System (DCS)"],
+            ["Energy Management System (EMS)","Energy Management System (EMS)"],
+            ["Equipment Diagnostic/Maintenance","Equipment Diagnostic/Maintenance"],
+            ["Fault Recorder","Fault Recorder"],
+            ["Frequency Device","Frequency Device"],
+            ["File Server","File Server"],
+            ["Firewall","Firewall"],
+            ["Generation Management System (GMS)","Generation Management System (GMS)"],
+            ["Historian","Historian"],
+            ["HMI Workstation","HMI Workstation"],
+            ["Hypervisor","Hypervisor"],
+            ["Inter-Control Center Communications Protocol (ICCP) Server","Inter-Control Center Communications Protocol (ICCP) Server"],
+            ["Infrastructure Support","Infrastructure Support"],
+            ["Intelligent Electronic Device", "Intelligent Electronic Device"],
+            ["Intelligent Instrumentation","Intelligent Instrumentation"],
+            ["Intermediate System","Intermediate System"],
+            ["Intrusion Detection System (IDS)","Intrusion Detection System (IDS)"],
+            ["Intrusion Prevention System (IPS)","Intrusion Prevention System (IPS)"],
+            ["Management Console","Management Console"],
+            ["Marketing System","Marketing System"],
+            ["Meter","Meter"],
+            ["Micro Panel","Micro Panel"],
+            ["Network Printer","Network Printer"],
+            ["Phasor Data Concentrator (PDC)","Phasor Data Concentrator (PDC)"],
+            ["Phasor Measurement Unit (PMU)","Phasor Measurement Unit (PMU)"],
+            ["Physical Access Control Panel","Physical Access Control Panel"],
+            ["Precision Time Device","Precision Time Device"],
+            ["Programmable Logic Controller (PLC)","Programable Logic Controller (PLC)"],
+            ["Protective Relay","Protective Relay"],
+            ["Remote Terminal Unit (RTU)","Remote Terminal Unit (RTU)"],
+            ["Router","Router"],
+            ["Security Information Management (SIM)","Security Information Management (SIM)"],
+            ["Security Event Management (SEM)","Security Event Management (SEM)"],
+            ["Security Event Log Collector","Security Event Log Collector"],
+            ["Security Information and Event Management (SIEM)","Security Information and Event Management (SIEM)"],
+            ["Sensor/Actuator/Transmitter","Sensor/Actuator/Transmitter"],
+            ["Situational Awareness","Situational Awareness"],
+            ["SQL Database","SQL Database"],
+            ["Supervisory Control and Data Acquisition (SCADA) Server","Supervisory Control and Data Acquisition (SCADA) Server"],
+            ["Supervisory Control and Data Acquisition (SCADA) PC","Supervisory Control and Data Acquisition (SCADA) PC"],
+            ["Switch","Switch"],
+            ["Tap Changer","Tap Changer"],
+            ["Terminal Server","Terminal Server"],
+            ["Time Device","Time Device"],
+            ["Training Simulator","Training Simulator"],
+            ["Unidirectional Gateways","Unidirectional Gateways"],
+            ["Virtual Host","Virtual Host"],
+            ["Virtual Server","Virtual Server"],
+            ["PI","PI"],
+            ["PC","PC"],
+            ["Other (please specify)","Other (please specify)"]
+            ], {}, {:class => 'form-control'}) %>
+          </div>
+
+          <div class="field">
+            If Other
+            <%= form.text_field :ca_other, id: :bes_cyber_asset_ca_other, class: 'form-control' %>
+          </div>
+
+          <div class="field">
+            Cyber Asset Vendor
+            <%= form.text_field :ca_vendor, id: :bes_cyber_asset_ca_vendor, class: 'form-control' %>
+          </div>
+
+          <div class="field">
+            Cyber Asset Model
+            <%= form.text_field :ca_model, class: 'form-control' %>
+          </div>
+
+          <div class="field">
+            Operating System or Firmware Type<br>
+            <%= form.select(:os_firmware, [
+              ["Apple Mac OS X","Apple Mac OS X"],
+              ["CentOS Linux","CentOS Linux"],
+              ["Cisco ASA","Cisco ASA"],
+              ["Cisco IOS","Cisco IOS"],
+              ["Debian Linux","Debian Linux"],
+              ["Digital OpenVMS","Digital OpenVMS"],
+              ["FreeBSD","FreeBSD"],
+              ["HP HP-UX","HP HP-UX"],
+              ["IBM AIX","IBM AIX"],
+              ["IBM OS390","IBM OS390"],
+              ["IBM PC-DOS","IBM PC-DOS"],
+              ["IBM z/OS","IBM z/OS"],
+              ["Juniper Junos OS","Juniper Junos OS"],
+              ["Microsoft MS-DOS","Microsoft MS-DOS"],
+              ["Microsoft Windows 2000","Microsoft Windows 2000"],
+              ["Microsoft Windows 7","Microsoft Windows 7"],
+              ["Microsoft Windows 8","Microsoft Windows 8"],
+              ["Microsoft Windows 10","Microsoft Windows 10"],
+              ["Microsoft Windows NT","Microsoft Windows NT"],
+              ["Microsoft Windows Server 2000","Microsoft Windows Server 2000"],
+              ["Microsoft Windows Server 2003","Microsoft Windows Server 2003"],
+              ["Microsoft Windows Server 2008","Microsoft Windows Server 2008"],
+              ["Microsoft Windows Server 2008 R2","Microsoft Windows Server 2008 R2"],
+              ["Microsoft Windows Server 2012","Microsoft Windows Server 2012"],
+              ["Microsoft Windows Server 2012 R2","Microsoft Windows Server 2012 R2"],
+              ["Microsoft Windows Server 2016","Microsoft Windows Server 2016"],
+              ["Microsoft Windows Vista","Microsoft Windows Vista"],
+              ["Microsoft Windows XP","Microsoft Windows XP"],
+              ["Novell openSUSE","Novell openSUSE"],
+              ["Novell SUSE Enterprise Linux Server","Novell SUSE Enterprise Linux Server"],
+              ["Oracle Linux","Oracle Linux"],
+              ["Oracle Solaris","Oracle Solaris"],
+              ["Red Hat Enterprise Linux","Red Hat Enterprise Linux"],
+              ["SGI Irix","SGI Irix"],
+              ["Slackware Linux","Slackware Linux"],
+              ["Sun Solaris","Sun Solaris"],
+              ["Ubuntu Linux","Ubuntu Linux"],
+              ["Unisys 2200","Unisys 2200"],
+              ["VMware ESX Server","VMware ESX Server"],
+              ["VMware ESXi","VMware ESXi"],
+              ["VMware vCenter Server","VMware vCenter Server"],
+              ["Other (please specify)","Other (please specify)"],
+              ], {}, {:class => "form-control"}) %>
+            </div>
+
+            <div class="field">
+              If Other
+              <%= form.text_field :os_other, id: :bes_cyber_asset_os_other, class: "form-control" %>
+            </div>
+
+          </div>
+
+          <br>
+          <div class="col-md-auto"></div>
+          <br>
+
+          <div class="col form-control">
+
+            <div class="field">
+              External Routable Connectivity?<br>
+              <%= form.select(:external_conn, [["No","No"],["Yes","Yes"]], {}, {:class => "form-control"}) %>
+            </div>
+
+            <div class="field">
+              System Logging Capable?<br>
+              <%= form.select(:system_logging, [["No","No"],["Yes","Yes"]], {}, {:class => "form-control"}) %>
+            </div>
+
+            <div class="field">
+              Alerting Capable?<br>
+              <%= form.select(:alerting, [["No","No"],["Yes","Yes"]], {}, {:class => "form-control"}) %>
+            </div>
+
+            <div class="field">
+              Responsible Registered Entity and NCR
+              <%= form.text_field :reg_entity_ncr, id: :bes_cyber_asset_reg_entity_ncr, class: "form-control"%>
+            </div>
+
+            <div class="field">
+              Region
+              <%= form.text_field :region, id: :bes_cyber_asset_region, class: "form-control" %>
+            </div>
+
+            <div class="field">
+              Function
+              <%= form.text_field :function, id: :bes_cyber_asset_function, class: "form-control" %>
+            </div>
+
+          </div>
+        </div>
+
+        <br>
+
+        <div class="form-row">
+
+          <div class="col form-control">
+            Image:<br>
+            <%= form.file_field :proof, multiple: false %>
+
+            <p>
+              <% if @bes_cyber_asset.proof? %>
+
+              <%= image_tag(@bes_cyber_asset.proof_url, :class => "photoedit") %>
+              <br>
+              <%= form.check_box :remove_proof %> Remove Image
+
+              <% end %>
+
+            </p>
+          </div>
+
+        </div>
+
+
+      <br>
+
+      <div class="form-row text-center">
+        <div class="col">
+          <% if user_signed_in? and current_page?('/bes_cyber_assets/new') %>
+          <div class="actions">
+            <%= form.submit "Add Asset", class: "btn-taco-lg" %>
+          </div>
+          <% else %>
+          <div class="actions">
+            <%= form.submit "Update", class: "btn-taco-lg" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+
+      </div>
+      <% end %>
+
+  

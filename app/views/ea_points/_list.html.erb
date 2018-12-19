@@ -1,0 +1,66 @@
+<%# app/views/students/_list.html.erb %>
+
+<div id="filterrific_results">
+  <br>
+
+  <div class="container">
+    <%= page_entries_info ea_points, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+    <%= render_filterrific_spinner %>
+  </div>
+
+  <br>
+
+  <div class="container-fluid">
+    <div style="overflow-x: auto">
+
+      <table class="table table-striped table-responsive table-hover table-taco">
+  <thead>
+    <tr>
+      <th>&nbsp;&nbsp;&nbsp;EAP ID</th>
+      <th scope="col" class="text-center">Interface</th>
+      <th scope="col" class="text-center">IP Address</th>
+      <th scope="col" class="text-center">Cyber Asset ID of EACMS</th>
+      <th scope="col" class="text-center">Electronic Security Perimter ID</th>
+      <th scope="col" class="text-center">Created At</th>
+      <th scope="col" class="text-center">Updated At</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ea_points.each do |ea_point| %>
+      <tr>
+        <td>
+        <div class="dropdown dropright">
+                <button class="btn btn-link dropdown-toggle" type="button" id="<%= ea_point.eap_id %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <%= ea_point.eap_id %>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="<%= ea_point.eap_id %>">
+                  <a><%= link_to 'Show', ea_point, class: "dropdown-item" %></a>
+                  <a><%= link_to 'Edit', edit_ea_point_path(ea_point), class: "dropdown-item"%></a>  
+                  <a><%= link_to "Delete", ea_point, :method=>:delete, :class=>:destroy, data: { confirm: 'Are you sure you want to delete the selected EAP?' },class: "dropdown-item" %></a>
+                </div>
+              </div>
+            </td>
+        <td class="text-center"><%= ea_point.eap_interface %></td>
+        <td class="text-center"><%= ea_point.eap_ip %></td>
+        <td class="text-center"><%= ea_point.eap_ca_eacms %></td>
+        <td class="text-center"><%= ea_point.eap_esp_id %></td>
+        <td class="text-center"><%= ea_point.created_at.strftime("%m-%d-%Y, %r") %></td>
+            <td class="text-center"><%= ea_point.updated_at.strftime("%m-%d-%Y, %r") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+      <div class="divider"></div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="container">
+    <%= will_paginate ea_points, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, list_classes: %w(pagination justify-content-center) %>
+  </div>
+
+</div>
+<br>
+

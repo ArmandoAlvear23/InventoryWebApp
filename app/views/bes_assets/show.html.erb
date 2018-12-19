@@ -1,0 +1,357 @@
+<body>
+  <div class="container">
+
+    <% if notice != nil %>
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+      <%= notice %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <% end %>
+
+    <p >
+      <strong><i>Asset:</i></strong>
+      <h1 class="display-4"><%= @bes_asset.asset_id%></h1>
+    </p>
+
+    <p><strong><i>Created at:</i></strong> <%= @bes_asset.created_at.strftime("%m-%d-%Y, %r") %> &nbsp <strong><i>Updated at:</i></strong> <%= @bes_asset.updated_at.strftime("%m-%d-%Y, %r") %></p>
+
+    <p>
+      <% if @bes_asset.proof? %>
+
+      <%= image_tag(@bes_asset.proof_url, :class => "photoedit") %>
+
+      <% else %>
+
+      <i> No image has been added to this BES Asset. </i>
+
+      <% end %>
+      
+    </p>
+
+
+    <div class="form-group">
+
+      <div class="row">
+        <div class="col form-control">
+          <p>
+            <strong>Asset Type:</strong>
+            <br>
+            <%= @bes_asset.asset_type %>
+          </p>
+        </div>
+
+        <br>
+
+        <div class="col-md-auto">
+        </div>
+
+        <br>
+
+        <div class="col form-control">
+          <div class="row">
+            <div class="col">
+              <p>
+                <strong>High Impact:</strong>
+                <%= @bes_asset.high_impact %>
+              </p>
+            </div>
+
+            <div class="col">
+              <p>
+                <strong>Medium Impact:</strong>
+                <%= @bes_asset.medium_impact %>
+              </p>
+            </div>
+
+            <div class="col">
+              <p>
+                <strong>Low Impact:</strong>
+                <%= @bes_asset.low_impact %>
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <br>
+
+      <div class="row">
+
+        <div class="col form-control">
+
+          <p>
+            <strong>Description:</strong>
+            <%= @bes_asset.description %>
+          </p>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row">
+
+        <div class="col form-control">
+          <p>
+            <strong>Commission Date:</strong>
+            <%= @bes_asset.commission %>
+          </p>
+
+          <p>
+            <strong>Decommission Date:</strong>
+            <%= @bes_asset.decommission %>
+          </p>
+
+          <p>
+            <strong>Location:</strong>
+            <%= @bes_asset.location %>
+          </p>
+        </div>
+
+        <br>
+        <div class="col-md-auto"></div>
+        <br>
+
+        <div class="col">
+
+          <div class="row">
+
+            <div class="col form-control">
+              <p>
+                <strong>ERC?:</strong>
+                <%= @bes_asset.erc %>
+              </p>
+            </div>
+
+            <br>
+            <div class="col-md-auto"></div>
+            <br>
+
+            <div class="col form-control">
+              <p>
+                <strong>Dial-Up?:</strong>
+                <%= @bes_asset.dial_up %>
+              </p>
+            </div>
+          </div>
+
+          <br>
+
+          <div class="row">
+
+            <div class="col form-control">
+              <p>
+                <strong>Region:</strong>
+                <%= @bes_asset.region_op %>
+              </p>
+            </div>
+
+            <br>
+            <div class="col-md-auto"></div>
+            <br>
+
+            <div class="col form-control">
+              <p>
+                <strong>Registration:</strong>
+                <%= @bes_asset.register_func %>
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <br>
+
+      <div class="row">
+
+        <div class="col form-control">
+
+          <strong> Control Centers (CC)</strong><br>
+
+          <p>
+            <strong>CC1:</strong>
+            <%= @bes_asset.cc1 %>
+          </p>
+
+          <p>
+            <strong>CC2:</strong>
+            <%= @bes_asset.cc2 %>
+          </p>
+
+          <p>
+            <strong>CC3:</strong>
+            <%= @bes_asset.cc3 %>
+          </p>
+
+          <p>
+            <strong>CC4:</strong>
+            <%= @bes_asset.cc4 %>
+          </p>
+
+          <p>
+            <strong>CC5:</strong>
+            <%= @bes_asset.cc5 %>
+          </p>
+
+          <p>
+            <strong>CC6:</strong>
+            <%= @bes_asset.cc6 %>
+          </p>
+
+          <p>
+            <strong>CC7:</strong>
+            <%= @bes_asset.cc7 %>
+          </p>
+
+          <p>
+            <strong>CC8:</strong>
+            <%= @bes_asset.cc8 %>
+          </p>
+
+        </div>
+
+        <br>
+        <div class="col-md-auto"></div>
+        <br>
+
+        <div class="col form-control">
+
+          <strong>Transmission Substations and Switchyards (TF)</strong><br>
+
+          <p>
+            <strong>TF1:</strong>
+            <%= @bes_asset.tf1 %>
+          </p>
+
+          <p>
+            <strong>TF2:</strong>
+            <%= @bes_asset.tf2 %>
+          </p>
+
+          <p>
+            <strong>TF3:</strong>
+            <%= @bes_asset.tf3 %>
+          </p>
+
+          <p>
+            <strong>TF4:</strong>
+            <%= @bes_asset.tf4 %>
+          </p>
+
+          <p>
+            <strong>TF5:</strong>
+            <%= @bes_asset.tf5 %>
+          </p>
+
+          <p>
+            <strong>TF6:</strong>
+            <%= @bes_asset.tf6 %>
+          </p>
+
+          <p>
+            <strong>TF7:</strong>
+            <%= @bes_asset.tf7 %>
+          </p>
+
+          <p>
+            <strong>TF8:</strong>
+            <%= @bes_asset.tf8 %>
+          </p>
+
+        </div>
+
+        <br>
+        <div class="col-md-auto"></div>
+        <br>
+
+        <div class="col form-control">
+
+          <strong>Generation Resources (G)</strong><br>
+
+          <p>
+            <strong>G1:</strong>
+            <%= @bes_asset.g1 %>
+          </p>
+
+          <p>
+            <strong>G2:</strong>
+            <%= @bes_asset.g2 %>
+          </p>
+
+          <p>
+            <strong>G3:</strong>
+            <%= @bes_asset.g3 %>
+          </p>
+
+          <p>
+            <strong>G4:</strong>
+            <%= @bes_asset.g4 %>
+          </p>
+
+          <p>
+            <strong>G5:</strong>
+            <%= @bes_asset.g5 %>
+          </p>
+
+        </div>
+
+        <br>
+        <div class="col-md-auto"></div>
+        <br>
+
+        <div class="col form-control">
+
+          <strong>Additional Assets (AA)</strong><br>
+
+          <p>
+            <strong>AA1:</strong>
+            <%= @bes_asset.aa1 %>
+          </p>
+
+          <p>
+            <strong>AA2:</strong>
+            <%= @bes_asset.aa2 %>
+          </p>
+
+          <p>
+            <strong>AA3:</strong>
+            <%= @bes_asset.aa3 %>
+          </p>
+
+        </div>
+
+        <br>
+        <div class="col-md-auto"></div>
+        <br>
+
+        <div class="col form-control">
+
+          <strong>Distribution Resources (DP)</strong><br>
+
+          <p>
+            <strong>DP1:</strong>
+            <%= @bes_asset.dp1 %>
+          </p>
+
+        </div>
+
+      </div>
+
+      <br>
+
+      <div class="text-center">
+        <%= link_to 'Edit Asset', edit_bes_asset_path(@bes_asset), class: "btn-taco-lg" %>
+        <%= link_to 'Back to Assets', bes_assets_path, class: "btn-taco-lg" %>
+      </div>
+
+
+    </div>
+
+  </div>
+  <br>
+</body>

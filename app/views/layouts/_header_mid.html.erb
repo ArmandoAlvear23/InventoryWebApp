@@ -1,0 +1,55 @@
+	
+<% if current_page?("/") and user_signed_in? %>
+	<div class="px-4 py-4 pt-md pb-md mx-auto text-center home-header border-bottom">
+		<div class="col-md-10 ml-sm-auto col-lg-10 ">
+			<h1 class="display-4">Critical Infrastructure Protection</h1>
+		</div>
+	</div>
+
+<% elsif current_page?("/bes_assets") and user_signed_in? %>
+	<div class="px-4 py-4 pt-md pb-md mx-auto text-center home-header border-bottom">
+		<div class="col-md-10 ml-sm-auto col-lg-10 ">
+			<h1 class="display-4">BES Assets</h1>
+		</div>
+	</div>
+
+<% elsif current_page?("/bes_cyber_systems") and user_signed_in? %>
+	<div class="px-4 py-4 pt-md pb-md mx-auto text-center home-header border-bottom">
+		<div class="col-md-10 ml-sm-auto col-lg-10 ">
+			<h1 class="display-4">Cyber Systems</h1>
+		</div>
+	</div>
+
+<% elsif current_page?("/bes_cyber_assets") and user_signed_in? %>
+	<div class="px-4 py-4 pt-md pb-md mx-auto text-center home-header border-bottom">
+		<div class="col-md-10 ml-sm-auto col-lg-10 ">
+			<h1 class="display-4">Cyber Assets</h1>
+		</div>
+	</div>
+
+<% elsif current_page?("/es_perimeters") and user_signed_in? %>
+	<div class="px-4 py-4 pt-md pb-md mx-auto text-center home-header border-bottom">
+		<div class="col-md-10 ml-sm-auto col-lg-10 ">
+			<h1 class="display-4">Electronic Security Perimeters (ESP)</h1>
+		</div>
+	</div>
+
+<% elsif current_page?("/ea_points") and user_signed_in? %>
+	<div class="px-4 py-4 pt-md pb-md mx-auto text-center home-header border-bottom">
+		<div class="col-md-10 ml-sm-auto col-lg-10 ">
+			<h1 class="display-4">Electronic Access Points (EAP)</h1>
+		</div>
+	</div>
+
+<% elsif current_page?("/ps_perimeters") and user_signed_in? %>
+	<div class="px-4 py-4 pt-md pb-md mx-auto text-center home-header border-bottom">
+		<div class="col-md-10 ml-sm-auto col-lg-10 ">
+			<h1 class="display-4">Physical Security Perimters (PSP)</h1>
+		</div>
+	</div>
+
+
+<% end %>
+
+
+	<br>

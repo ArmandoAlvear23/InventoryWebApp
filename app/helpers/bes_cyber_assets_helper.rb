@@ -1,0 +1,2 @@
+module BesCyberAssetsHelper
+end

@@ -1,0 +1,72 @@
+<body>
+  <div class="container">
+
+    <%= form_with(model: ps_perimeter, local: true) do |form| %>
+    <% if ps_perimeter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ps_perimeter.errors.count, "error") %> prohibited this ps_perimeter from being saved:</h2>
+
+      <ul>
+        <% ps_perimeter.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+    <div class="form-row">
+
+
+      <div class="col form-control">
+
+        <div class="field">
+          Physical Security Perimeter ID
+          <%= form.text_field :psp_id, id: :ps_perimeter_psp_id, class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          Description
+          <%= form.text_field :psp_description, id: :ps_perimeter_psp_description, class: 'form-control' %>
+        </div>
+
+      </div>
+
+      <br>
+      <div class="md-col-auto"></div>
+      <br>
+
+      <div class="col form-control">
+
+        <!-- <div class="field">
+          Location
+          <%= form.text_field :psp_location, id: :ps_perimeter_psp_location, class: 'form-control' %>
+        </div> -->
+
+        <div class="field">
+          Asset ID
+          <%= form.select(:psp_asset_id, @bes_assets.all.collect { |p| [ p.asset_id, p.asset_id ] }, {:include_blank => true}, {:class => 'form-control'}) %>
+        </div>
+
+      </div>
+
+
+    </div>
+
+    <br>
+
+    <div class="form-row text-center">
+      <div class="col">
+        <% if user_signed_in? and current_page?('/ps_perimeters/new') %>
+        <div class="actions">
+          <%= form.submit "Add EAP", class: "btn-taco-lg" %>
+        </div>
+        <% else %>
+        <div class="actions">
+          <%= form.submit "Update", class: "btn-taco-lg" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</body>

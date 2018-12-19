@@ -1,0 +1,12 @@
+<div class="text-center">
+<h1 class="display-4">Editing Electronic Security Perimeter</h1>
+</div>
+
+<br>
+
+<%= render 'form', es_perimeter: @es_perimeter %>
+
+<div class="text-center">
+	<%= link_to 'Exit Editing', @es_perimeter, class: "btn-taco-med" %>
+	<%= link_to 'Show Systems', es_perimeters_path, class: "btn-taco-med" %>
+</div>

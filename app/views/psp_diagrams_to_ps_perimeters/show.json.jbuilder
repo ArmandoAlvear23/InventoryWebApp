@@ -1,0 +1,1 @@
+json.partial! "psp_diagrams_to_ps_perimeters/psp_diagrams_to_ps_perimeter", psp_diagrams_to_ps_perimeter: @psp_diagrams_to_ps_perimeter

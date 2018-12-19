@@ -1,0 +1,63 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ca_id: MyString
+  ca_classification: MyString
+  bcs_id: MyString
+  impact_rating: MyString
+  asset_id: MyString
+  protocol: MyString
+  ip_address: MyString
+  esp_identifier: MyString
+  ca_dial_up: MyString
+  cip_005: MyString
+  ca_ira: MyString
+  ca_psp: MyString
+  ca_bcs_login: MyString
+  bcs_login: MyString
+  log_collector: MyString
+  activation_date: 2018-06-22
+  deactivation_date: 2018-06-22
+  ca_function: MyString
+  ca_other: MyString
+  ca_vendor: MyString
+  ca_model: MyString
+  os_firmware: MyString
+  os_other: MyString
+  external_conn: MyString
+  system_logging: MyString
+  alerting: MyString
+  reg_entity_ncr: MyString
+  region: MyString
+  function: MyString
+
+two:
+  ca_id: MyString
+  ca_classification: MyString
+  bcs_id: MyString
+  impact_rating: MyString
+  asset_id: MyString
+  protocol: MyString
+  ip_address: MyString
+  esp_identifier: MyString
+  ca_dial_up: MyString
+  cip_005: MyString
+  ca_ira: MyString
+  ca_psp: MyString
+  ca_bcs_login: MyString
+  bcs_login: MyString
+  log_collector: MyString
+  activation_date: 2018-06-22
+  deactivation_date: 2018-06-22
+  ca_function: MyString
+  ca_other: MyString
+  ca_vendor: MyString
+  ca_model: MyString
+  os_firmware: MyString
+  os_other: MyString
+  external_conn: MyString
+  system_logging: MyString
+  alerting: MyString
+  reg_entity_ncr: MyString
+  region: MyString
+  function: MyString

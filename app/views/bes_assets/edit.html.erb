@@ -1,0 +1,12 @@
+<div class = "text-center">
+	<h1 class="display-4" >Editing BES Asset</h1>
+</div>
+
+<br>
+
+<%= render 'form', bes_asset: @bes_asset %>
+
+<div class="text-center">
+	<%= link_to 'Exit Editing', @bes_asset, class: "btn-taco-med" %>
+	<%= link_to 'Back to Assets', bes_assets_path, class: "btn-taco-med" %>
+</div>

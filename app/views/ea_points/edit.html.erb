@@ -1,0 +1,13 @@
+<div class="text-center">
+<h1 class="display-4">Editing Electronic Access Point</h1>
+</div>
+
+<br>
+
+<%= render 'form', ea_point: @ea_point %>
+
+<div class="text-center">
+	<%= link_to 'Exit Editing', @ea_point, class: "btn-taco-med" %>
+	<%= link_to 'Show EAPs', ea_points_path, class: "btn-taco-med" %>
+</div>
+

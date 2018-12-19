@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  BES_cyber_system: MyString
+  BES_asset_BCS: MyString
+  BES_system: MyString
+  impact_rating_BCS: MyString
+  justification: MyString
+
+two:
+  BES_cyber_system: MyString
+  BES_asset_BCS: MyString
+  BES_system: MyString
+  impact_rating_BCS: MyString
+  justification: MyString

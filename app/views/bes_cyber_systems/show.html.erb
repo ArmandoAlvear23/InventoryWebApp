@@ -1,0 +1,141 @@
+<body>
+  <div class="container">
+
+    <% if notice != nil %>
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+      <%= notice %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <% end %>
+
+    <p>
+      <strong><i>Cyber System:</i></strong>
+      <h1 class="display-4">
+        <%= @bes_cyber_system.BES_cyber_system %>
+      </h1>
+    </p>
+
+    <p><strong><i>Created at:</i></strong> <%= @bes_cyber_system.created_at.strftime("%m-%d-%Y, %r") %> &nbsp <strong><i>Updated at:</i></strong> <%= @bes_cyber_system.updated_at.strftime("%m-%d-%Y, %r") %></p>
+
+    <div class="form-group">
+
+      <div class="form-row">
+
+        <div class="col form-control">
+          <p>
+            <strong>BES Asset:</strong>
+            <%= @bes_cyber_system.BES_asset_BCS %>
+          </p>
+        </div>
+
+        <br>
+        <div class="col-md-auto"></div>
+        <br>
+
+        <div class="col form-control">
+          <p>
+            <strong>BES Cyber System?:</strong>
+            <%= @bes_cyber_system.BES_system %>
+          </p>
+        </div>
+
+      </div>
+
+      <br>
+
+      <div class="form-row">
+
+        <div class="col form-control">
+          <p>
+            <strong>Impact Rating:</strong>
+            <%= @bes_cyber_system.impact_rating_BCS %>
+          </p>
+        </div>
+
+        <br>
+        <div class="col-md-auto"></div>
+        <br>
+
+        <div class="col form-control">
+          <p>
+            <strong>Justification:</strong>
+            <%= @bes_cyber_system.justification %>
+          </p>
+        </div>
+
+      </div>
+
+      <br>
+
+      <div class="form-row">
+
+        <div class="col form-control">
+          <p>
+            <strong>6.3.1 Dynamic Response: </strong>
+            <%= @bes_cyber_system.q1 %>
+          </p>
+
+          <p>
+            <strong>6.3.2 Balancing Load and Generation: </strong>
+            <%= @bes_cyber_system.q2 %>
+          </p>
+
+          <p>
+            <strong>6.3.3 Controlling Frequency (Real Power): </strong>
+            <%= @bes_cyber_system.q3 %>
+          </p>
+
+          <p>
+            <strong>6.3.4 Controlling Voltage (Reactive Power): </strong>
+            <%= @bes_cyber_system.q4 %>
+          </p>
+
+          <p>
+            <strong>6.3.5 Managing Constraint: </strong>
+            <%= @bes_cyber_system.q5 %>
+          </p>
+
+        </div>
+
+        <br>
+        <div class="col-md-auto"></div>
+        <br>
+
+        <div class="col form-control">
+
+          <p>
+            <strong>6.3.6 Monitoring and Control: </strong>
+            <%= @bes_cyber_system.q6 %>
+          </p>
+
+          <p>
+            <strong>6.3.7 Restoration of the BES: </strong>
+            <%= @bes_cyber_system.q7 %>
+          </p>
+
+          <p>
+            <strong>6.3.8 Situational Awareness: </strong>
+            <%= @bes_cyber_system.q8 %>
+          </p>
+
+          <p>
+            <strong>6.3.9 Inter-Entity Coordination: </strong>
+            <%= @bes_cyber_system.q9 %>
+          </p>
+
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="text-center">
+      <%= link_to 'Edit System', edit_bes_cyber_system_path(@bes_cyber_system), class: "btn-taco-lg" %>
+      <%= link_to 'Back to Systems', bes_cyber_systems_path, class: "btn-taco-lg" %>
+    </div>
+    
+  </div>
+  <br>
+</body>

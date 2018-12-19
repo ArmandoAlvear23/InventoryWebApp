@@ -1,0 +1,631 @@
+<body>
+
+  <div class="container">
+    <%= form_with(model: bes_asset, local: true) do |form| %>
+    <% if bes_asset.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bes_asset.errors.count, "error") %> prohibited this bes_asset from being saved:</h2>
+      <ul>
+        <% bes_asset.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+    <div class="form-control">
+      <div class="form-row">
+        <div class="form-group col">
+          <div class="field">
+            Asset Type<br>
+            <div class="form-control form-group">
+
+              <div class="row">
+                <div class="col">
+                  <%= form.radio_button :asset_type, 'Control Center (CC)', onchange: "cc();", id: :bes_asset_asset_type %> Control Centers (CC)
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <%= form.radio_button :asset_type, 'Transmission Substation and Switchyard (TF)', onchange: "tf();", id: :bes_asset_asset_type %> Transmission Substations and Switchyards (TF)
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <%= form.radio_button :asset_type, 'Generation Resource (G)', onchange: "g();", id: :bes_asset_asset_type %> Generation Resources (G)
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <%= form.radio_button :asset_type, 'Additional Asset (AA)', onchange: "aa();", id: :bes_asset_asset_type %> Additional Assets (AA)
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <%= form.radio_button :asset_type, 'Distribution Resource (DP)', onchange: "dp();", id: :bes_asset_asset_type %> Distribution Resources (DP)
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">  
+          <div class="form-group">
+            <div class="field">
+              Asset Name
+              <%= form.text_field :asset_id, id: :bes_asset_asset_id, required: 'true', class: "form-control"%>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="field">
+              Location
+              <%= form.text_field :location, id: :bes_asset_location, class: "form-control" %>
+            </div>
+          </div>
+          
+        </div>
+
+      </div>
+      
+
+      <div class="form-group">
+        <div class="field">
+          Description
+          <%= form.text_field :description, id: :bes_asset_description, required: 'true', class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="field">
+            Commission Date
+            <%= form.text_field :commission, class: 'js-datepicker form-control', :id=>'datepicker-comm', :type=>'date' %>
+          </div>
+        </div>
+
+        <div class="col" >
+          <div class="field">
+            Decommission Date
+            <%= form.text_field :decommission, class: 'js-datepicker form-control', :id=>'datepicker-decomm', :type=>'date' %>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="form-row">
+
+        <div class="col-md-3">
+          <div class="field">
+            ERC<br>
+            <%= form.select( :erc, [["No", "False"], ["Yes","True"]], {}, {class: "form-control"}) %>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="field">
+            Dial Up?<br>
+            <%= form.select( :dial_up, [["No", "False"], ["Yes","True"]], {}, {class: 'form-control'}) %>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="field">
+            Region Operations
+            <%= form.text_field :region_op, id: :bes_asset_region_op, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="field">
+            Function
+            <%= form.text_field :register_func, id: :bes_asset_register_func, class: "form-control" %>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <br>
+
+    <div class="form-control">
+      <div class="form-row">
+
+        <div class="col">
+          Image:<br>
+          <%= form.file_field :proof, multiple: false %>
+
+          <p>
+            <% if @bes_asset.proof? %>
+
+            <%= image_tag(@bes_asset.proof_url, :class => "photoedit") %>
+            <br>
+            <%= form.check_box :remove_proof %> Remove Image
+
+            <% end %>
+            
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <br>
+
+    <div id="cc_group">
+
+      <div class="field form-control">
+        <p>
+          <strong>CC1 (1.1 - High)</strong>
+          <br>
+          Each control center or backup control center used to perform the functional obligations of the Reliability Coordinator.
+          <br>
+        </p>
+        <%= form.radio_button :cc1, 'Yes', id: :bes_asset_cc1, :checked => "N/A" %> Yes
+        <%= form.radio_button :cc1, 'No', id: :bes_asset_cc1 %> No
+      </div>
+
+      <br>
+
+      <div class="field form-control">
+       <p>
+        <strong>CC2 (1.2 - High)</strong>
+        <br>
+        Each control center or backup control center used to perform the functional obligations of the Balancing Authority:
+        <br>
+        1. For generation equal to or greater than an aggregate of 3000 MW in a single interconnection, or
+        <br>
+        2. For one or more of the assets that meet criterion G2, G3, or AA1.
+        <br>
+      </p>
+      <%= form.radio_button :cc2, 'Yes', id: :bes_asset_cc2 %> Yes
+      <%= form.radio_button :cc2, 'No', id: :bes_asset_cc2 %> No
+    </div>
+
+    <br>
+
+    <div class="field form-control">
+      <p>
+        <strong>CC3 (1.3 - High)</strong>
+        <br>
+        Each control center or backup control center used to perform the functional obligations of the Transmission Operator for one or more of the assets that meet criterion TF1, TF2, TF3, TF5, TF6, AA1, or AA2.
+        <br>
+      </p>
+      <%= form.radio_button :cc3, 'Yes', id: :bes_asset_cc3 %> Yes
+      <%= form.radio_button :cc3, 'No', id: :bes_asset_cc3 %> No
+    </div>
+
+    <br>
+
+    <div class="field form-control">
+      <p>
+        <strong>CC4 (1.4 - High)</strong>
+        <br>
+        Each control center or backup control center used to perform the functional obligations of the Generator Operator for one or more of the assets that meet criterion G1, G2, G3, or AA1.
+        <br>
+      </p>
+      <%= form.radio_button :cc4, 'Yes', id: :bes_asset_cc4 %> Yes
+      <%= form.radio_button :cc4, 'No', id: :bes_asset_cc4 %> No
+    </div>
+
+    <br>
+
+    <div class="field form-control">
+      <p>
+        <strong>CC5 (2.11 - Medium)</strong>
+        <br>
+        Each control center or backup control center, not already included in High Impact Rating (H) above, used to perform the functional obligations of the Generator Operator for an aggregate highest rated net real power capability of the preceding 12 calendar months equal to or exceeding 1500 MW in a single Interconnection.
+        <br>
+      </p>
+      <%= form.radio_button :cc5, 'Yes', id: :bes_asset_cc5 %> Yes
+      <%= form.radio_button :cc5, 'No', id: :bes_asset_cc5 %> No
+    </div>
+
+    <br>
+
+    <div class="field form-control">
+      <p>
+        <strong>CC6 (2.12 - Medium)</strong>
+        <br>
+        Each control center or backup control center used to perform the functional obligations of the Transmission Operator not included in High Impact Rating (H), above.
+        <br>
+      </p>
+      <%= form.radio_button :cc6, 'Yes', id: :bes_asset_cc6 %> Yes
+      <%= form.radio_button :cc6, 'No', id: :bes_asset_cc6 %> No
+    </div>
+
+    <br>
+
+    <div class="field form-control">
+      <p>
+        <strong>CC7 (2.13 - Medium)</strong>
+        <br>
+        Each control center or backup control center, not already included in High Impact Rating (H) above, used to perform the functional obligations of the Balancing Authority of generation equal to or greater than an aggregate of 1500 MW in a single Interconnection.
+        <br>
+      </p>
+      <%= form.radio_button :cc7, 'Yes', id: :bes_asset_cc7 %> Yes
+      <%= form.radio_button :cc7, 'No', id: :bes_asset_cc7 %> No
+    </div>
+
+    <br>
+
+    <div class="field form-control">
+      <p>
+        <strong>CC8 (3.1 - Low)</strong>
+        <br>
+        Control centers and backup control centers having BES Cyber Systems not meeting any other impact criteria.
+        <br>  
+      </p>
+      <%= form.radio_button :cc8, 'Yes', id: :bes_asset_cc8 %> Yes
+      <%= form.radio_button :cc8, 'No', id: :bes_asset_cc8 %> No
+    </div>
+  </div>
+
+  <div id="tf_group">
+    <div class="field form-control">
+      <p>
+        <strong>TF1 (2.2 - Medium)</strong>
+        <br>
+        Each BES reactive resource or group of resources at a single location (excluding generation Facilities) with an aggregate maximum Reactive Power nameplate rating of 1000 MVAR or greater (excluding those at generation Facilities). The only BES Cyber Systems that meet this criterion are those shared BES Cyber Systems that could, within 15 minutes, adversely impact the reliable operation of any combination of resources that in aggregate equal or exceed 1000 MVAR.
+        <br>
+      </p>
+      <%= form.radio_button :tf1, 'Yes', id: :bes_asset_tf1 %> Yes
+      <%= form.radio_button :tf1, 'No', id: :bes_asset_tf1 %> No
+    </div>
+
+    <br>
+
+    <div class="field form-control">
+      <p>
+        <strong>TF2 (2.4 - Medium)</strong>
+        <br>
+        Transmission Facilities operated at 500 kV or higher. For the purpose of this criterion, the collector bus for a generation plant is not considered a Transmission Facility, but is part of the generation interconnection Facility.
+        <br>
+      </p>
+      <%= form.radio_button :tf2, 'Yes', id: :bes_asset_tf2 %> Yes
+      <%= form.radio_button :tf2, 'No', id: :bes_asset_tf2 %> No
+    </div>
+
+    <br>
+
+    <div class="field form-control">
+     <p>
+      <strong>TF3 (2.5 - Medium)</strong>
+      <br>
+      Transmission Facilities that are operating between 200 kV and 499 kV at a single station or substation, where the station or substation is connected at 200 kV or higher voltages to three or more other Transmission stations or substations and has an "aggregate weighted value" exceeeding 3000 according to the table below. The "aggregate weighted value" for a single station or substation is determined by summing the "weight value per line" shown in the table below for each incoming and each outgoing BES Transmission Line that is connected to another Transmission station or substation. For the purpose of this criterion, the collector bus for a generation plant is not considered a Transmission Facility, but is part of the generation interconnection Facility.
+      <p>
+
+        <table class="text-center" align="center" border="2">
+          <tr>
+            <th>
+              Voltage Value of a Line
+            </th>
+            <th>
+              Weight of Value per Line
+            </th>
+          </tr>
+          <tr>
+            <td>
+              less than 200 kV (not applicable)
+            </td>
+            <td>
+              (not applicable)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              200 kV to 299 kV
+            </td>
+            <td>
+              700
+            </td>
+          </tr>
+          <tr>
+            <td>
+              300 kV to 499 kV
+            </td>
+            <td>
+              1300
+            </td>
+          </tr>
+          <tr>
+            <td>
+              500 kV to 499 kV
+            </td>
+            <td>
+              0
+            </td>
+          </tr>
+        </table>
+      </p>
+    </p>
+    <%= form.radio_button :tf3, 'Yes', id: :bes_asset_tf3 %> Yes
+    <%= form.radio_button :tf3, 'No', id: :bes_asset_tf3 %> No
+  </div>
+
+  <br>
+
+  <div class="field form-control">
+    <p>
+      <strong>TF4 (2.6 - Medium)</strong>
+      <br>
+      Transmission Facilities at a single station or substation location that are identified by its Reliability Coordinator, Planning Coordinator, or Transmission Planner as critical to the derivation of Interconnection Reliability Operating Limits (IROLs) and their associated contingencies.
+      <br>
+    </p>
+    <%= form.radio_button :tf4, 'Yes', id: :bes_asset_tf4 %> Yes
+    <%= form.radio_button :tf4, 'No', id: :bes_asset_tf4 %> No
+  </div>
+
+  <br>
+
+  <div class="field form-control">
+    <p>
+      <strong>TF5 (2.7 - Medium)</strong>
+      <br>
+      Transmission Facilities, identified as essential to meeting Nuclear Plant Interface Requirements.
+      <br>
+    </p>
+    <%= form.radio_button :tf5, 'Yes', id: :bes_asset_tf5 %> Yes
+    <%= form.radio_button :tf5, 'No', id: :bes_asset_tf5 %> No
+  </div>
+
+  <br>
+
+  <div class="field form-control">
+    <p>
+      <strong>TF6 (2.8 - Medium)</strong>
+      <br>
+      Transmission Facilities, including generation interconnection Facilities, providing the generation interconnection required to connect generator output to the Transmission Systems that, if destroyed, degraded, misusedm, or otherwise rendered unavailable, would result in the loss of the generation Facilities identified by any Generator Owner as a result of its application of Attachment 1, criterion G1 or G2.
+      <br>
+    </p>
+    <%= form.radio_button :tf6, 'Yes', id: :bes_asset_tf6 %> Yes
+    <%= form.radio_button :tf6, 'No', id: :bes_asset_tf6 %> No
+  </div>
+
+  <br>
+
+  <div class="field form-control">
+    <p>
+      <strong>TF7 (3.2 - Low)</strong>
+      <br>
+      Transmission stations and substations having BES Cyber Systems not meeting any other impact criteria.
+      <br>
+    </p>
+    <%= form.radio_button :tf7, 'Yes', id: :bes_asset_tf7 %> Yes
+    <%= form.radio_button :tf7, 'No', id: :bes_asset_tf7 %> No
+  </div>
+
+  <br>
+
+  <div class="field form-control">
+    <p>
+      <strong>TF8 (3.4 - Low)</strong>
+      <br>
+      Systems and facilities critical to system restoration, including Cranking Paths and initial switching requirements.
+      <br>
+    </p>
+    <%= form.radio_button :tf8, 'Yes', id: :bes_asset_tf8 %> Yes
+    <%= form.radio_button :tf8, 'No', id: :bes_asset_tf8 %> No
+  </div>
+</div>
+
+<div id="g_group">
+  <div class="field form-control">
+    <p>
+      <strong>G1 (2.1 - Medium)</strong>
+      <br>
+      Commissioned generation, by each group of generating units at a single plant location, with an aggregate highest rated net Real Power capability of the preceding 12 calendar months equal to or exceeding 1500 MW in a single Interconnection. For each group of generating units, the only BES Cyber Systems that meet this criterion are those shared BES Cyber Systems that could, within 15 minutes, adversely impact the reliable operation of any combination of units that in aggregate equal or exceed 1500 MW in a single Interconnection.
+      <br>
+    </p>
+    <%= form.radio_button :g1, 'Yes', id: :bes_asset_g1 %> Yes
+    <%= form.radio_button :g1, 'No', id: :bes_asset_g1 %> No
+  </div>
+
+  <br>
+
+  <div class="field form-control">
+   <p>
+    <strong>G2 (2.3 - Medium)</strong>
+    <br>
+    Each generation Facility that its Planning Coordinator or Transmission Planner designates, and informs the Generator Owner or Generator Operator, as necessary to avoid an Adverse Reliability Impact in the planning horizon of more than one year.
+    <br>
+  </p>
+  <%= form.radio_button :g2, 'Yes', id: :bes_asset_g2 %> Yes
+  <%= form.radio_button :g2, 'No', id: :bes_asset_g2 %> No
+</div>
+
+<br>
+
+<div class="field form-control">
+ <p>
+  <strong>G3 (2.6 - Medium)</strong>
+  <br>
+  Generation at a single plant location or Transmission Facilities at a single station or substation location that are identified by its Reliability Coordinator, Planning Coordinator, or Transmission Planner as critical to the derivation of Interconnection Reliability Operating Limits (IROLs) and their associated contingencies.
+  <br>
+</p>
+<%= form.radio_button :g3, 'Yes', id: :bes_asset_g3 %> Yes
+<%= form.radio_button :g3, 'No', id: :bes_asset_g3 %> No
+</div>
+
+<br>
+
+<div class="field form-control">
+  <p>
+    <strong>G4 (3.4 - Low)</strong>
+    <br>
+    Blackstart Resources critical to system restoration having BES Cyber Systems not meeting any other impact criteria
+    <br>
+  </p>
+  <%= form.radio_button :g4, 'Yes', id: :bes_asset_g4 %> Yes
+  <%= form.radio_button :g4, 'No', id: :bes_asset_g4 %> No
+</div>
+
+<br>
+
+<div class="field form-control">
+  <p>
+    <strong>G5 (3.3 - Low)</strong>
+    <br>
+    Generation resources having BES Cyber Systems not meeting any other impact criteria.
+    <br>
+  </p>
+  <%= form.radio_button :g5, 'Yes', id: :bes_asset_g5 %> Yes
+  <%= form.radio_button :g5, 'No', id: :bes_asset_g5 %> No
+</div>
+</div>
+
+<div id="aa_group">
+  <div class="field form-control">
+    <p>
+      <strong>AA1 (2.9 - Medium)</strong>
+      <br>
+      Each Special Protection System (SPS), Remedial Action Scheme (RAS), or automated switching System that operates BES Elements, that, if destroyed, degraded, misused or otherwise rendered unavailable, would cause one or more Interconnection Reliability Operating Limits (IROLs) violations for failure to operate as designed or cause a reduction in one or more IROLs if destroyed, degraded, misused, or otherwise rendered unavailable.
+      <br>
+    </p>
+    <%= form.radio_button :aa1, 'Yes', id: :bes_asset_aa1 %> Yes
+    <%= form.radio_button :aa1, 'No', id: :bes_asset_aa1 %> No
+  </div>
+
+  <br>
+
+  <div class="field form-control">
+    <p>
+      <strong>AA2 (2.10 - Medium)</strong>
+      <br>
+      Each system or group of Elements that performs automatic Load shedding under a common control system, without human operator initiation, of 300 MW or more implementing under-voltage load shedding (UVLS) or under-frequency load shedding (UFLS) under a load shedding program that is subject to one or more requirements in a NERC or regional reliability standard.
+      <br>
+    </p>
+    <%= form.radio_button :aa2, 'Yes', id: :bes_asset_aa2 %> Yes
+    <%= form.radio_button :aa2, 'No', id: :bes_asset_aa2 %> No
+  </div>
+
+  <br>
+
+  <div class="field form-control">
+    <p>
+      <strong>AA3 (3.5 - Low)</strong>
+      <br>
+      Special Protection Systems that support the reliable operation of the Bulk Electric System having BES Cyber Systems not meeting any other impact criteria.
+      <br>
+    </p>
+    <%= form.radio_button :aa3, 'Yes', id: :bes_asset_aa3 %> Yes
+    <%= form.radio_button :aa3, 'No', id: :bes_asset_aa3 %> No
+  </div>
+</div>
+
+<div id="dp_group">
+  <div class="field form-control">
+   <p>
+    <strong>DP1 (3.6 - Low)</strong>
+    <br>
+    Applicable protection systems.
+    <br>
+  </p>
+  <%= form.radio_button :dp1, 'Yes', id: :bes_asset_dp1 %> Yes
+  <%= form.radio_button :dp1, 'No', id: :bes_asset_dp1 %> No
+</div>
+</div>
+
+<br>
+
+<div class="form-row text-center">
+  <div class="col">
+    <% if user_signed_in? and current_page?('/bes_assets/new') %>
+    <div class="actions">
+      <%= form.submit "Add Asset", class: "btn-taco-lg" %>
+    </div>
+    <% else %>
+    <div class="actions">
+      <%= form.submit "Update", class: "btn-taco-lg" %>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<% end %>
+</div>
+</body>
+
+<script>
+
+  close_all();
+
+  function close_all()
+  {
+    document.getElementById("cc_group").style.display = 'none';
+    document.getElementById("tf_group").style.display = 'none';
+    document.getElementById("g_group").style.display = 'none';
+    document.getElementById("aa_group").style.display = 'none';
+    document.getElementById("dp_group").style.display = 'none';
+  }
+
+  function cc()
+  {
+    close_all();
+    document.getElementById("cc_group").style.display = 'initial';
+    uncheckRadioButtons("bes_asset_tf", 8);
+    uncheckRadioButtons("bes_asset_g", 5);
+    uncheckRadioButtons("bes_asset_aa", 3);
+    uncheckRadioButtons("bes_asset_dp", 1);
+  }
+
+  function tf()
+  {
+    close_all();
+    document.getElementById("tf_group").style.display = 'initial';
+    uncheckRadioButtons("bes_asset_cc", 8);
+    uncheckRadioButtons("bes_asset_g", 5);
+    uncheckRadioButtons("bes_asset_aa", 3);
+    uncheckRadioButtons("bes_asset_dp", 1);
+  }
+
+  function g()
+  {
+    close_all();
+    document.getElementById("g_group").style.display = 'initial';
+    uncheckRadioButtons("bes_asset_cc", 8);
+    uncheckRadioButtons("bes_asset_tf", 8);
+    uncheckRadioButtons("bes_asset_aa", 3);
+    uncheckRadioButtons("bes_asset_dp", 1);
+  }
+
+  function aa()
+  {
+    close_all();
+    document.getElementById("aa_group").style.display = 'initial';
+    uncheckRadioButtons("bes_asset_cc", 8);
+    uncheckRadioButtons("bes_asset_g", 5);
+    uncheckRadioButtons("bes_asset_tf", 8);
+    uncheckRadioButtons("bes_asset_dp", 1);
+  }
+
+  function dp()
+  {
+    close_all();
+    document.getElementById("dp_group").style.display = 'initial';
+    uncheckRadioButtons("bes_asset_cc", 8);
+    uncheckRadioButtons("bes_asset_g", 5);
+    uncheckRadioButtons("bes_asset_aa", 3);
+    uncheckRadioButtons("bes_asset_tf", 8);
+  }
+
+  function uncheckRadioButtons(st1, imax)
+  {
+    var str1 = st1;
+    var str2 = "";
+    for (var i = 1; i <= imax; i++)
+    {
+      str2 = "";
+      str2 = str1.concat(i.toString());
+      document.getElementById(str2).checked = true;
+      document.getElementById(str2).checked = false;
+    }
+  } 
+
+</script>

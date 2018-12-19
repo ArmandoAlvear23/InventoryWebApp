@@ -1,0 +1,25 @@
+!!! 5
+%html{lang: I18n.locale}
+  %head
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}
+    %meta{content: "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
+    %meta{content: "width=device-width, initial-scale=1", name: "viewport; charset=utf-8"}
+    %meta{content: "NONE,NOARCHIVE", name: "robots"}
+    = csrf_meta_tag
+    = stylesheet_link_tag "rails_admin/rails_admin.css", media: :all
+    = javascript_include_tag "rails_admin/rails_admin.js"
+    %div
+      = render "layouts/rails_admin/navigation"
+
+  %body
+    #admin-js{:'data-i18n-options' => I18n.t("admin.js").to_json}
+    -# Initialize JS simple i18n
+    :javascript
+      RailsAdmin.I18n.init('#{I18n.locale}', document.getElementById("admin-js").dataset.i18nOptions);
+    #loading.label.label-warning{style: 'display:none; position:fixed; right:20px; bottom:20px; z-index:100000'}= t('admin.loading')
+    %div
+    .container{:'data-pjax-container' => true}= render template: 'layouts/rails_admin/pjax'
+
+  %footer.pt-4.my-md-3.pt-md-3.border-top
+    %p.mt-5.mb-5.text-muted.text-center
+      ='© 2018'

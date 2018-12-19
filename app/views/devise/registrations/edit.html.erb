@@ -1,0 +1,51 @@
+<body>
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            
+            <img class="mb-4" src="/assets/pub-logo.png" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Change Password</h1>
+
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= devise_error_messages! %>
+
+            <form class="form-signin">
+              <div class="form-label-group">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "E-mail" %>
+              </div>
+
+              <br>
+
+              <div class="form-label-group">
+          <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "New Password (6 character minimum)" %>
+              </div>
+
+              <br>
+
+              <div class="form-label-group">
+          <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Confirm Password" %>
+              </div>
+
+              <br>
+
+              <div class="form-label-group">
+          <%= f.password_field :current_password, autocomplete: "off", class: "form-control", placeholder: "Old Password" %>
+              </div>
+
+              <br>
+
+              <div class="actions">
+          <%= f.submit "Update", class: "btn btn-lg btn-primary btn-block"%>
+        </div>
+            </form>
+            <% end %>
+
+            <%= link_to "Back", :back %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

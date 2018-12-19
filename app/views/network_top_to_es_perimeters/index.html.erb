@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Network Top To Es Perimeters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nt file name</th>
+      <th>Nt esp</th>
+      <th>PROOF</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @network_top_to_es_perimeters.each do |network_top_to_es_perimeter| %>
+      <tr>
+        <td><%= network_top_to_es_perimeter.nt_file_name %></td>
+        <td><%= network_top_to_es_perimeter.nt_esp_id %></td>
+        <td><%= network_top_to_es_perimeter.es_pproof %></td>
+        <td><%= link_to 'Show', network_top_to_es_perimeter %></td>
+        <td><%= link_to 'Edit', edit_network_top_to_es_perimeter_path(network_top_to_es_perimeter) %></td>
+        <td><%= link_to 'Destroy', network_top_to_es_perimeter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Network Top To Es Perimeter', new_network_top_to_es_perimeter_path %>

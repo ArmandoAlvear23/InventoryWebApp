@@ -1,0 +1,133 @@
+<body>
+  <div class="container">
+
+    <% if notice != nil %>
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+      <%= notice %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <% end %>
+
+
+    <p>
+      <strong>Electronic Security Perimeter ID:</strong>
+      <h1 class="display-4">
+        <%= @es_perimeter.esp_id %>
+      </h1>
+    </p>
+
+    <p><strong><i>Created at:</i></strong> <%= @es_perimeter.created_at.strftime("%m-%d-%Y, %r") %> &nbsp <strong><i>Updated at:</i></strong> <%= @es_perimeter.updated_at.strftime("%m-%d-%Y, %r") %></p>
+
+
+    <div class="form-group">
+
+      <div class="form-row">
+        <div class="col form-control">
+          <p>
+            <strong>Description:</strong>
+            <%= @es_perimeter.esp_description %>
+          </p>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="form-row">
+        <div class="col form-control">
+          <p>
+            <strong>Network Address: </strong>
+            <%= @es_perimeter.esp_network %>
+          </p>
+        </div>
+
+        <br>
+        <div class="col-md-auto"></div>
+        <br>
+
+        <div class="col form-control">
+          <p>
+            <strong>External Routable Connectivity: </strong>
+            <%= @es_perimeter.esp_conn %>
+          </p>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="form-row">
+        <div class="col form-control">
+          <p>
+            <strong>Interactive Remote Access: </strong>
+            <%= @es_perimeter.esp_remote %>
+          </p>
+        </div>
+
+        <br>
+        <div class="col-md-auto"></div>
+        <br>
+
+        <div class="col form-control">
+          <p>
+            <strong>EACMS for Interactive Remote Access: </strong>
+            <%= @es_perimeter.esp_eacms %>
+          </p>
+        </div>
+      </div>
+
+      <br>
+
+        <ul class="list-group">
+
+          <strong>Network Topology:</strong>
+
+          <% @network_top_to_es_perimeters.each do |t| %>
+            <% if t.nt_esp_id.to_f == @es_perimeter.id %>
+
+            <li class="list-group-item list-group-item-action">
+             <div class="row">
+              <div class="col">
+                <%= t.nt_file_name %>
+              </div>
+
+              <div class="col-md-auto">
+                <i><strong>Uploaded on</strong></i>
+                <%= t.created_at.strftime("%m-%d-%Y at %r") %>
+              </div>
+
+              <div class="col-md-auto">
+                <% if t.es_pproof? %>
+                <%= link_to "OPEN", es_perimeter_download_path(t.id), :disposition => 'inline', :type=>"application/pdf", :x_sendfile=>true %>
+                <% else %>
+                <strong>NO PDF</strong>
+                <% end %>
+              </div>
+            </div>
+          </li>
+
+            <% end %>
+          <% end %>
+        </ul>
+
+
+
+
+
+
+      </div>
+
+    </div>
+
+    <br>
+
+    <div class="text-center">
+      <%= link_to 'Edit ESP', edit_es_perimeter_path(@es_perimeter), class: "btn-taco-lg" %>
+      <%= link_to 'Back to ESPs', es_perimeters_path, class: "btn-taco-lg" %>
+      <%= link_to 'Add File', new_network_top_to_es_perimeter_path, class: "btn-taco-lg" %>
+
+    </div>
+
+  </div>
+  <br>
+</body>

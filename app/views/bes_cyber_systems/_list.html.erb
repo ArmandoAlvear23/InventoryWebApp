@@ -1,0 +1,66 @@
+<%# app/views/students/_list.html.erb %>
+
+<div id="filterrific_results">
+  <br>
+
+  <div class="container">
+    <%= page_entries_info bes_cyber_systems, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+    <%= render_filterrific_spinner %>
+  </div>
+
+  <br>
+
+  <div class="container-fluid">
+    <div style="overflow-x: auto">
+
+      <table  class=" table table-striped table-responsive table-hover table-taco">
+        <thead>
+          <tr>
+            <th scope="col">&nbsp;&nbsp;&nbsp;Cyber System ID</th>
+            <th scope="col" class="text-center">Asset ID</th>
+            <th scope="col" class="text-center">BES System?</th>
+            <th scope="col" class="text-center">Impact Rating</th>
+            <th scope="col" class="text-center">Justification</th>
+            <th scope="col" class="text-center">Created At</th>
+            <th scope="col" class="text-center">Updated At</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @bes_cyber_systems.each do |bcs| %>
+          <tr>
+            <td>
+              <div class="dropdown dropright">
+                <button class="btn btn-link dropdown-toggle" type="button" id="<%= bcs.BES_cyber_system %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <%= bcs.BES_cyber_system %>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="<%= bcs.BES_cyber_system %>">
+                  <a><%= link_to 'Show', bcs, class: "dropdown-item" %></a>
+                  <a><%= link_to 'Edit', edit_bes_cyber_system_path(bcs), class: "dropdown-item"%></a>  
+                  <a><%= link_to "Delete", bcs, :method=>:delete, :class=>:destroy, data: { confirm: 'Are you sure you want to delete the selected BES Cyber System?' },class: "dropdown-item" %></a>
+                </div>
+              </div>
+            </td>
+            <td class="text-center"><%= bcs.BES_asset_BCS %></td>
+            <td class="text-center"><%= bcs.BES_system %></td>
+            <td class="text-center"><%= bcs.impact_rating_BCS %></td>
+            <td class="text-center"><%= bcs.justification %></td>
+            <td class="text-center"><%= bcs.created_at.strftime("%m-%d-%Y, %r") %></td>
+            <td class="text-center"><%= bcs.updated_at.strftime("%m-%d-%Y, %r") %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="divider"></div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="container">
+    <%= will_paginate bes_cyber_systems, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, list_classes: %w(pagination justify-content-center) %>
+  </div>
+
+</div>
+<br>
+

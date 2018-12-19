@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  psp_dia_file_name: MyString
+  psp_dia_psp_id: MyString
+
+two:
+  psp_dia_file_name: MyString
+  psp_dia_psp_id: MyString

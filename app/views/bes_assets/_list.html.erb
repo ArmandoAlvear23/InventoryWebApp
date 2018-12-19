@@ -1,0 +1,82 @@
+<%# app/views/students/_list.html.erb %>
+
+<div id="filterrific_results">
+  <br>
+
+  <div class="container">
+    <%= page_entries_info bes_assets, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+    <%= render_filterrific_spinner %>
+  </div>
+
+  <br>
+
+  <div class="container-fluid">
+    <div align="center" style="overflow-x: auto">
+
+      <table id="tbl" class=" table table-striped table-responsive table-hover table-taco">
+        <thead>
+          <tr>
+            <th scope="col">&nbsp;&nbsp;&nbsp;Asset ID</th>
+            <th scope="col" class="text-center">Type</th>
+            <th scope="col">Description</th>
+            <th scope="col" class="text-center">Commission</th>
+            <th scope="col" class="text-center">Decommission</th>
+            <th scope="col" class="test-center">Location</th>
+            <th scope="col" class="text-center">High</th>
+            <th scope="col" class="text-center">Medium</th>
+            <th scope="col" class="text-center">Low</th>
+            <th scope="col" class="text-center">ERC?</th>
+            <th scope="col" class="text-center">Dial-Up?</th>
+            <th scope="col" class="text-center">Region</th>
+            <th scope="col" class="text-center">Function</th>
+            <th scope="col" class="text-center">Created At</th>
+            <th scope="col" class="text-center">Updated At</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @bes_assets.each do |bes_asset| %>
+          <tr>
+            <td>
+              <div class="dropdown dropright">
+                <button class="btn btn-link dropdown-toggle" type="button" id="<%= bes_asset.asset_id %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <%= bes_asset.asset_id %>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="<%= bes_asset.asset_id %>">
+                  <a><%= link_to 'Show', bes_asset, class: "dropdown-item" %></a>
+                  <a><%= link_to 'Edit', edit_bes_asset_path(bes_asset), class: "dropdown-item"%></a>  
+                  <a><%= link_to "Delete", bes_asset, :method=>:delete, :class=>:destroy, data: { confirm: 'Are you sure you want to delete the selected BES Asset?' },class: "dropdown-item"%></a>
+                </div>
+              </div>
+            </td>
+            <td class="text-center"><%= bes_asset.asset_type %></td>
+            <td><%= bes_asset.description %></td>
+            <td class="text-center"><% if bes_asset.commission != nil %><%= bes_asset.commission.strftime("%b %d, %Y") %><% end %></td>
+            <td class="text-center"><% if bes_asset.decommission != nil %><%= bes_asset.decommission.strftime("%b %d, %Y") %><% end %></td>
+            <td class="text-center"><%= bes_asset.location %></td>
+            <td class="text-center"><%= bes_asset.high_impact %></td>
+            <td class="text-center"><%= bes_asset.medium_impact %></td>
+            <td class="text-center"><%= bes_asset.low_impact %></td>
+            <td class="text-center"><%= bes_asset.erc %></td>
+            <td class="text-center"><%= bes_asset.dial_up %></td>
+            <td class="text-center"><%= bes_asset.region_op %></td>
+            <td class="text-center"><%= bes_asset.register_func %></td>
+            <td class="text-center"><%= bes_asset.created_at.strftime("%m-%d-%Y, %r") %></td>
+            <td class="text-center"><%= bes_asset.updated_at.strftime("%m-%d-%Y, %r") %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="divider"></div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="container">
+    <%= will_paginate bes_assets, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, list_classes: %w(pagination justify-content-center) %>
+  </div>
+
+</div>
+<br>
+
